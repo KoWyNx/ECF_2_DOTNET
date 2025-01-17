@@ -1,4 +1,5 @@
 using EcfDotnet.Context;
+using EcfDotnet.DTL;
 using EcfDotnet.Models;
 using EcfDotnet.Services;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,13 @@ builder.Services.AddDbContext<MyDbContext>(options =>
 builder.Services.Configure<MongoDBSettings>(
     builder.Configuration.GetSection("MongoDB"));
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddSingleton<MongoDBSvc>();
+builder.Services.AddScoped<EvenementDTL>();
+builder.Services.AddScoped<ParticipantDTL>();
+builder.Services.AddScoped<EvenementSvc>();
+builder.Services.AddScoped<ParticipantSvc>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
