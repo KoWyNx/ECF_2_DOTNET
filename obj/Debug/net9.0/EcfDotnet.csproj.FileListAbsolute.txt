@@ -219,3 +219,9 @@
 /Users/Fares/Desktop/Dev/EcfDotnet/obj/Debug/net9.0/EcfDotnet.pdb
 /Users/Fares/Desktop/Dev/EcfDotnet/obj/Debug/net9.0/EcfDotnet.genruntimeconfig.cache
 /Users/Fares/Desktop/Dev/EcfDotnet/obj/Debug/net9.0/ref/EcfDotnet.dll
+/Users/Fares/Desktop/Dev/EcfDotnet/bin/Debug/net9.0/DnsClient.dll
+/Users/Fares/Desktop/Dev/EcfDotnet/bin/Debug/net9.0/MongoDB.Bson.dll
+/Users/Fares/Desktop/Dev/EcfDotnet/bin/Debug/net9.0/MongoDB.Driver.dll
+/Users/Fares/Desktop/Dev/EcfDotnet/bin/Debug/net9.0/SharpCompress.dll
+/Users/Fares/Desktop/Dev/EcfDotnet/bin/Debug/net9.0/Snappier.dll
+/Users/Fares/Desktop/Dev/EcfDotnet/bin/Debug/net9.0/ZstdSharp.dll

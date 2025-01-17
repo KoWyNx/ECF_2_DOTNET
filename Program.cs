@@ -1,4 +1,6 @@
 using EcfDotnet.Context;
+using EcfDotnet.Models;
+using EcfDotnet.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +9,12 @@ builder.Services.AddDbContext<MyDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyDbConnection"));
 });
+
+builder.Services.Configure<MongoDBSettings>(
+    builder.Configuration.GetSection("MongoDB"));
+
+builder.Services.AddSingleton<MongoDBSvc>();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

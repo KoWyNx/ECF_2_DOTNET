@@ -45,7 +45,9 @@ public partial class MyDbContext : DbContext
             entity.Property(e => e.DateFin)
                 .HasColumnType("datetime")
                 .HasColumnName("DATE_FIN");
+            entity.Property(e => e.Description).HasColumnName("DESCRIPTION");
             entity.Property(e => e.Localisation).HasColumnName("LOCALISATION");
+            entity.Property(e => e.Nom).HasColumnName("NOM");
         });
 
         modelBuilder.Entity<Participant>(entity =>
