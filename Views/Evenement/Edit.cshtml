@@ -7,41 +7,27 @@
 <h1>@ViewData["Title"]</h1>
 
 <form asp-action="Edit" method="post">
+
+    <input type="hidden" id="Primarikey" name="Primarikey" value="@Model.Primarikey" />
     <div class="mb-3">
         <label for="Nom" class="form-label">Nom</label>
-        <input type="text" class="form-control" id="Nom" name="Nom" value="@Model.Nom" required />
+        <input type="text" class="form-control" id="Nom" name="Nom" value="@Model.Nom" required/>
     </div>
     <div class="mb-3">
         <label for="Description" class="form-label">Description</label>
-        <input type="text" class="form-control" id="Description" name="Description" value="@Model.Description" required />
+        <input type="text" class="form-control" id="Description" name="Description" value="@Model.Description" required/>
     </div>
     <div class="mb-3">
         <label for="DateDebut" class="form-label">Date de début</label>
-        <input type="date" class="form-control" id="DateDebut" name="DateDebut" value="@Model.DateDebut?.ToString("yyyy-MM-dd")" required />
+        <input type="date" class="form-control" id="DateDebut" name="DateDebut" value="@Model.DateDebut?.ToString("yyyy-MM-dd")" required/>
     </div>
     <div class="mb-3">
         <label for="DateFin" class="form-label">Date de fin</label>
-        <input type="date" class="form-control" id="DateFin" name="DateFin" value="@Model.DateFin?.ToString("yyyy-MM-dd")" required />
+        <input type="date" class="form-control" id="DateFin" name="DateFin" value="@Model.DateFin?.ToString("yyyy-MM-dd")" required/>
     </div>
     <div class="mb-3">
         <label for="Localisation" class="form-label">Localisation</label>
-        <input type="text" class="form-control" id="Localisation" name="Localisation" value="@Model.Localisation" />
-    </div>
-    <div class="mb-3">
-        <label for="Participants" class="form-label">Participant</label>
-        <select class="form-control" id="Participants" name="FkParticipant">
-            @if (Model.Participant != null && Model.Participant.Any())
-            {
-                @foreach (var participant in Model.Participant)
-                {
-                    <option value="@participant.Primarikey">@participant.Prenom @participant.Nom</option>
-                }
-            }
-            else
-            {
-                <option disabled>Aucun participant disponible</option>
-            }
-        </select>
+        <input type="text" class="form-control" id="Localisation" name="Localisation" value="@Model.Localisation"/>
     </div>
 
     <div class="mb-3">

@@ -4,14 +4,14 @@
     ViewData["Title"] = "Liste des événements";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="text-center text-primary">@ViewData["Title"]</h1>
 
-<p>
-    <a href="@Url.Action("Create", "Evenement")" class="btn btn-primary">Créer un nouvel événement</a>
-</p>
+<div class="mb-3">
+    <a href="@Url.Action("Create", "Evenement")" class="btn btn-primary btn-lg">Créer un nouvel événement</a>
+</div>
 
-<table class="table">
-    <thead>
+<table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
     <tr>
         <th>Nom</th>
         <th>Description</th>
@@ -29,15 +29,15 @@
             <td>@evenement.DateDebut?.ToString("dd/MM/yyyy")</td>
             <td>@evenement.DateFin?.ToString("dd/MM/yyyy")</td>
             <td>
-                <a href="@Url.Action("Details", "Evenement", new { id = evenement.Primarikey })" class="btn btn-info">Détails</a>
-                <a href="@Url.Action("Edit", "Evenement", new { id = evenement.Primarikey })" class="btn btn-warning">Modifier</a>
+                <a href="@Url.Action("Details", "Evenement", new { id = evenement.Primarikey })" class="btn btn-info btn-sm me-2">Détails</a>
+                <a href="@Url.Action("Edit", "Evenement", new { id = evenement.Primarikey })" class="btn btn-warning btn-sm me-2">Modifier</a>
                 <form action="@Url.Action("Delete", "Evenement", new { id = evenement.Primarikey })" method="post" style="display:inline-block;">
-                    @Html.AntiForgeryToken()  
+                    @Html.AntiForgeryToken()
                     <input type="hidden" name="_method" value="DELETE" />
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet événement ?');">Supprimer</button>
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet événement ?');">Supprimer</button>
                 </form>
 
-                <a href="@Url.Action("AjouterParticipant", "Evenement", new { id = evenement.Primarikey })" class="btn btn-success">Ajouter un participant</a>
+                <a href="@Url.Action("AjouterParticipant", "Evenement", new { id = evenement.Primarikey })" class="btn btn-success btn-sm ms-2">Ajouter un participant</a>
             </td>
         </tr>
     }

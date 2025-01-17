@@ -1,46 +1,53 @@
 @model EcfDotnet.ViewModel.ParticipantViewModel
 
-<h2>Ajouter un participant</h2>
+<h2 class="text-center text-primary mb-4">Ajouter un participant</h2>
 
 <form method="post">
-    <div class="form-group">
-        <label for="Nom">Nom</label>
-        <input type="text" class="form-control" id="Nom" name="Nom" value="@Model.Nom" required />
-    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                <div class="form-group mb-3">
+                    <label for="Nom" class="fw-bold">Nom</label>
+                    <input type="text" class="form-control" id="Nom" name="Nom" value="@Model.Nom" required />
+                </div>
 
-    <div class="form-group">
-        <label for="Prenom">Prénom</label>
-        <input type="text" class="form-control" id="Prenom" name="Prenom" value="@Model.Prenom" required />
-    </div>
+                <div class="form-group mb-3">
+                    <label for="Prenom" class="fw-bold">Prénom</label>
+                    <input type="text" class="form-control" id="Prenom" name="Prenom" value="@Model.Prenom" required />
+                </div>
 
-    <div class="form-group">
-        <label for="Email">Email</label>
-        <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" required />
-        @if (ViewData["EmailError"] != null)
-        {
-            <div class="text-danger">@ViewData["EmailError"]</div>
-        }
-    </div>
+                <div class="form-group mb-3">
+                    <label for="Email" class="fw-bold">Email</label>
+                    <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" required />
+                    @if (ViewData["EmailError"] != null)
+                    {
+                        <div class="text-danger mt-1">@ViewData["EmailError"]</div>
+                    }
+                </div>
 
-    <div class="form-group">
-        <label for="Age">Âge</label>
-        <input type="number" class="form-control" id="Age" name="Age" value="@Model.Age" />
-    </div>
+                <div class="form-group mb-3">
+                    <label for="Age" class="fw-bold">Âge</label>
+                    <input type="number" class="form-control" id="Age" name="Age" value="@Model.Age" />
+                </div>
 
-    <div class="form-group">
-        <label for="Telephone">Téléphone</label>
-        <input type="text" class="form-control" id="Telephone" name="Telephone" value="@Model.Telephone" />
-    </div>
-    <input type="hidden" id="FkEvenement" name="FkEvenement" value="@Model.FkEvenement" />
+                <div class="form-group mb-3">
+                    <label for="Telephone" class="fw-bold">Téléphone</label>
+                    <input type="text" class="form-control" id="Telephone" name="Telephone" value="@Model.Telephone" />
+                </div>
 
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Ajouter Participant</button>
+                <input type="hidden" id="FkEvenement" name="FkEvenement" value="@Model.FkEvenement" />
+
+                <div class="form-group text-center mb-3">
+                    <button type="submit" class="btn btn-primary btn-lg">Ajouter le participant</button>
+                </div>
+            </div>
+        </div>
     </div>
 </form>
 
 @if (ViewBag.ErrorMessage != null)
 {
-    <div class="alert alert-danger">
+    <div class="alert alert-danger mt-4">
         @ViewBag.ErrorMessage
     </div>
 }

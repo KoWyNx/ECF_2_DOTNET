@@ -78,8 +78,7 @@ namespace EcfDotnet.Services
         }
 
 
-        public async Task<Evenement> UpdateEventAsync(Guid id, EvenementViewModel evenementViewModel,
-            List<RParticipantEvenement> participants)
+        public async Task<Evenement> UpdateEventAsync(Guid id, EvenementViewModel evenementViewModel)
         {
             var evenementViewModelExist = await _evenementDtl.GetEvenetByIdAsyn(id);
 
@@ -93,26 +92,11 @@ namespace EcfDotnet.Services
             _evenementDtl.Context.Evenements.Update(existingEvenement);
             await _evenementDtl.Context.SaveChangesAsync();
 
-            var existingParticipants = _evenementDtl.Context.RParticipantEvenements
-                .Where(rp => rp.FkEvenement == id)
-                .ToList();
-
-            _evenementDtl.Context.RParticipantEvenements.RemoveRange(existingParticipants);
-            await _evenementDtl.Context.SaveChangesAsync();
-
-            if (participants != null && participants.Any())
-            {
-                foreach (var participant in participants)
-                {
-                    participant.FkEvenement = id;
-                    await _evenementDtl.Context.RParticipantEvenements.AddAsync(participant);
-                }
-
-                await _evenementDtl.Context.SaveChangesAsync();
-            }
+            // Suppression de la gestion des participants
 
             return existingEvenement;
         }
+
 
         
 

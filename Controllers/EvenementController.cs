@@ -132,29 +132,29 @@ namespace EcfDotnet.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, EvenementViewModel evenement, List<RParticipantEvenement> participants)
+        public async Task<IActionResult> Edit(Guid id, EvenementViewModel evenement)
         {
-            try
+            if (id != evenement.Primarikey)
             {
-                if (id != evenement.Primarikey)
-                {
-                    return BadRequest();
-                }
+                return BadRequest("L'ID de l'événement ne correspond pas.");
+            }
 
-                if (ModelState.IsValid)
+         
+                try
                 {
-                    await _evenementSvc.UpdateEventAsync(id, evenement, participants);
+                    await _evenementSvc.UpdateEventAsync(id, evenement);
                     return RedirectToAction(nameof(Index));
                 }
-
-                return View(evenement);
-            }
-            catch (Exception ex)
-            {
-                ViewBag.ErrorMessage = "Une erreur s'est produite lors de la modification de l'événement.";
-                return View(evenement);
-            }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Erreur lors de la mise à jour de l'événement : {ex.Message}");
+                    ViewBag.ErrorMessage = "Une erreur s'est produite lors de la mise à jour de l'événement.";
+                    return View(evenement);
+                }
+            
+                
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
