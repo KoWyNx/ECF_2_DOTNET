@@ -15,5 +15,9 @@ public partial class Evenement
 
     public DateTime? DateCreation { get; set; }
 
+    public string? Nom { get; set; }
+
+    public string? Description { get; set; }
+
     public virtual ICollection<RParticipantEvenement> RParticipantEvenements { get; set; } = new List<RParticipantEvenement>();
 }

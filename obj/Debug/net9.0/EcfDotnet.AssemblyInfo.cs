@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EcfDotnet")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dff2a660d063409d9bd444b4e16bdfc249007957")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa7dc3f7b7e25771b14278c1ec32899b55a1e83c")]
 [assembly: System.Reflection.AssemblyProductAttribute("EcfDotnet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EcfDotnet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
