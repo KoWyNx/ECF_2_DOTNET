@@ -1,0 +1,50 @@
+@model EcfDotnet.ViewModel.EvenementViewModel
+
+@{
+    ViewData["Title"] = "Créer un événement";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label for="Nom" class="form-label">Nom</label>
+        <input type="text" class="form-control" id="Nom" name="Nom" required />
+    </div>
+    <div class="mb-3">
+        <label for="Description" class="form-label">Description</label>
+        <input type="text" class="form-control" id="Description" name="Description" required />
+    </div>
+    <div class="mb-3">
+        <label for="DateDebut" class="form-label">Date de début</label>
+        <input type="date" class="form-control" id="DateDebut" name="DateDebut" required />
+    </div>
+    <div class="mb-3">
+        <label for="DateFin" class="form-label">Date de fin</label>
+        <input type="date" class="form-control" id="DateFin" name="DateFin" required />
+    </div>
+    <div class="mb-3">
+        <label for="Localisation" class="form-label">Localisation</label>
+        <input type="text" class="form-control" id="Localisation" name="Localisation" />
+    </div>
+    <div class="mb-3">
+        <label for="Participants" class="form-label">Participant</label>
+        <select class="form-control" id="Participants" name="FkParticipant">
+            <option value="">Sélectionnez un participant</option>
+            @if (Model.Participant != null && Model.Participant.Any())
+            {
+                @foreach (var participant in Model.Participant)
+                {
+                    <option value="@participant.Primarikey">@participant.Prenom @participant.Nom</option>
+                }
+            }
+        </select>
+    </div>
+
+
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Créer</button>
+        <a href="@Url.Action("Index", "Evenement")" class="btn btn-secondary">Annuler</a>
+    </div>
+</form>

@@ -1,0 +1,70 @@
+@model EcfDotnet.ViewModel.EvenementViewModel
+
+@{
+    ViewData["Title"] = "Détails de l'événement";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="mb-3">
+    <label>Nom :</label>
+    <p>@Model.Nom</p>
+</div>
+<div class="mb-3">
+    <label>Description :</label>
+    <p>@Model.Description</p>
+</div>
+<div class="mb-3">
+    <label>Date de début :</label>
+    <p>@Model.DateDebut?.ToString("dd/MM/yyyy")</p>
+</div>
+<div class="mb-3">
+    <label>Date de fin :</label>
+    <p>@Model.DateFin?.ToString("dd/MM/yyyy")</p>
+</div>
+<div class="mb-3">
+    <label>Localisation :</label>
+    <p>@Model.Localisation</p>
+</div>
+<div class="mb-3">
+    <label>Date de création :</label>
+    <p>@Model.DateCreation?.ToString("dd/MM/yyyy")</p>
+</div>
+
+<h3>Participants :</h3>
+@if (Model.Participant.Any())
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Prénom</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var rp in Model.Participant)
+        {
+            <tr>
+                <td>@rp.Prenom</td>
+                <td>@rp.Nom</td>
+                <td>@rp.Email</td>
+                <td>@rp.Age</td>
+
+
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Aucun participant inscrit.</p>
+}
+
+<p>
+    <a href="@Url.Action("Edit", "Evenement", new { id = Model.Primarikey })" class="btn btn-warning">Modifier</a>
+    <a href="@Url.Action("Index", "Evenement")" class="btn btn-secondary">Retour</a>
+</p>
