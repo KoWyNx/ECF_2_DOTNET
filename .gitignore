@@ -28,8 +28,13 @@ project.fragment.lock.json
 *.DotSettings.user
 .idea_modules/
 
-Dockerfile*
-docker-compose*
+# Autoriser les fichiers Docker principaux mais exclure les temporaires
+Dockerfile.temp
+Dockerfile.*.temp
+docker-compose.temp.yml
+docker-compose.*.temp.yml
+!docker-compose.yml
+!Dockerfile
 !docker-compose.override.yml
 
 *.nupkg

@@ -1,0 +1,50 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5000"
+    environment:
+      - ASPNETCORE_URLS=http://+:5000
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ./rapports:/app/rapports
+    depends_on:
+      - db
+      - sonarqube
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=P@ssw0rd
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+
+  sonarqube:
+    image: sonarqube:9.9-community
+    ports:
+      - "9000:9000"
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+    volumes:
+      - sonarqube-data:/opt/sonarqube/data
+      - sonarqube-logs:/opt/sonarqube/logs
+      - sonarqube-extensions:/opt/sonarqube/extensions
+
+  trivy:
+    image: aquasec/trivy:latest
+    volumes:
+      - ./:/app
+      - ./rapports:/reports
+    working_dir: /app
+    command: fs --format json --output /reports/trivy-deps.json .
+
+volumes:
+  mssql-data:
+  sonarqube-data:
+  sonarqube-logs:
+  sonarqube-extensions:

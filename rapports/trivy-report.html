@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport d'analyse Trivy</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; color: #333; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        h2 { color: #3498db; margin-top: 20px; }
+        .summary { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .vulnerability { margin-bottom: 15px; padding: 15px; border-radius: 5px; }
+        .critical { background-color: #f8d7da; border-left: 5px solid #dc3545; }
+        .high { background-color: #fff3cd; border-left: 5px solid #ffc107; }
+        .medium { background-color: #d1ecf1; border-left: 5px solid #17a2b8; }
+        .low { background-color: #d4edda; border-left: 5px solid #28a745; }
+        .badge { display: inline-block; padding: 3px 7px; border-radius: 10px; font-size: 0.8em; font-weight: bold; color: white; }
+        .badge-critical { background-color: #dc3545; }
+        .badge-high { background-color: #ffc107; color: #212529; }
+        .badge-medium { background-color: #17a2b8; }
+        .badge-low { background-color: #28a745; }
+        pre { background-color: #f8f9fa; padding: 10px; border-radius: 5px; overflow-x: auto; }
+        .meta { color: #6c757d; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>Rapport d'analyse des dépendances avec Trivy</h1>
+    <div class="summary">
+        <h2>Résumé</h2>
+        <p>Date d'analyse: 06/05/2025 20:05:45</p>
+        <p>Projet: ECF_2_DOTNET</p>
+        <div id="summary-counts">Chargement du résumé...</div>
+    </div>
+    
+    <h2>Vulnérabilités détectées</h2>
+    <div id="vulnerabilities">Chargement des vulnérabilités...</div>
+
+    <script>
+        // Charger et traiter le fichier JSON
+        fetch('trivy-deps.json')
+            .then(response => response.json())
+            .then(data => {
+                // Compter les vulnérabilités par sévérité
+                let counts = {
+                    CRITICAL: 0,
+                    HIGH: 0,
+                    MEDIUM: 0,
+                    LOW: 0,
+                    UNKNOWN: 0
+                };
+                
+                let vulnHtml = '';
+                
+                // Parcourir les résultats
+                if (data.Results) {
+                    data.Results.forEach(result => {
+                        if (result.Vulnerabilities) {
+                            result.Vulnerabilities.forEach(vuln => {
+                                counts[vuln.Severity] = (counts[vuln.Severity] || 0) + 1;
+                                
+                                // Créer l'élément HTML pour cette vulnérabilité
+                                const severityClass = vuln.Severity.toLowerCase();
+                                vulnHtml += `
+                                    <div class="vulnerability ${severityClass}">
+                                        <h3>${vuln.VulnerabilityID} <span class="badge badge-${severityClass}">${vuln.Severity}</span></h3>
+                                        <p>${vuln.Title || 'Pas de titre disponible'}</p>
+                                        <p><strong>Paquet affecté:</strong> ${vuln.PkgName} (${vuln.InstalledVersion})</p>
+                                        <p><strong>Version fixée:</strong> ${vuln.FixedVersion || 'Non disponible'}</p>
+                                        <div class="meta">
+                                            <p><strong>CVSS Score:</strong> ${vuln.CVSS?.Score || 'Non disponible'}</p>
+                                            <p><strong>Référence:</strong> <a href="${vuln.PrimaryURL}" target="_blank">${vuln.PrimaryURL || 'Non disponible'}</a></p>
+                                        </div>
+                                    </div>
+                                `;
+                            });
+                        }
+                    });
+                }
+                
+                // Mettre à jour le résumé
+                document.getElementById('summary-counts').innerHTML = `
+                    <p><strong>Total des vulnérabilités:</strong> ${Object.values(counts).reduce((a, b) => a + b, 0)}</p>
+                    <p><span class="badge badge-critical">CRITIQUE</span> ${counts.CRITICAL}</p>
+                    <p><span class="badge badge-high">HAUTE</span> ${counts.HIGH}</p>
+                    <p><span class="badge badge-medium">MOYENNE</span> ${counts.MEDIUM}</p>
+                    <p><span class="badge badge-low">BASSE</span> ${counts.LOW}</p>
+                `;
+                
+                // Mettre à jour la liste des vulnérabilités
+                if (vulnHtml) {
+                    document.getElementById('vulnerabilities').innerHTML = vulnHtml;
+                } else {
+                    document.getElementById('vulnerabilities').innerHTML = '<p>Aucune vulnérabilité détectée.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors du chargement du rapport:', error);
+                document.getElementById('summary-counts').innerHTML = '<p>Erreur lors du chargement du rapport.</p>';
+                document.getElementById('vulnerabilities').innerHTML = '<p>Erreur lors du chargement des données.</p>';
+            });
+    </script>
+</body>
+</html>

@@ -225,3 +225,15 @@
 /Users/Fares/Desktop/Dev/EcfDotnet/bin/Debug/net9.0/SharpCompress.dll
 /Users/Fares/Desktop/Dev/EcfDotnet/bin/Debug/net9.0/Snappier.dll
 /Users/Fares/Desktop/Dev/EcfDotnet/bin/Debug/net9.0/ZstdSharp.dll
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/obj/Debug/net9.0/EcfDotnet.csproj.AssemblyReference.cache
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/obj/Debug/net9.0/EcfDotnet.GeneratedMSBuildEditorConfig.editorconfig
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/obj/Debug/net9.0/EcfDotnet.AssemblyInfoInputs.cache
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/obj/Debug/net9.0/EcfDotnet.AssemblyInfo.cs
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/obj/Debug/net9.0/EcfDotnet.csproj.CoreCompileInputs.cache
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/obj/Debug/net9.0/EcfDotnet.MvcApplicationPartsAssemblyInfo.cache
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/obj/Debug/net9.0/EcfDotnet.RazorAssemblyInfo.cache
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/obj/Debug/net9.0/EcfDotnet.RazorAssemblyInfo.cs
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/obj/Debug/net9.0/EcfDotnet.sourcelink.json
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/obj/Debug/net9.0/EcfDotnet.dll
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/obj/Debug/net9.0/refint/EcfDotnet.dll
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/obj/Debug/net9.0/EcfDotnet.pdb

@@ -1,0 +1,420 @@
+{
+  "SchemaVersion": 2,
+  "CreatedAt": "2025-05-06T20:59:39.762792679Z",
+  "ArtifactName": ".",
+  "ArtifactType": "filesystem",
+  "Metadata": {
+    "ImageConfig": {
+      "architecture": "",
+      "created": "0001-01-01T00:00:00Z",
+      "os": "",
+      "rootfs": {
+        "type": "",
+        "diff_ids": null
+      },
+      "config": {}
+    }
+  },
+  "Results": [
+    {
+      "Target": "EcfDotnet.E2ETests.New/bin/Debug/net8.0/EcfDotnet.E2ETests.New.deps.json",
+      "Class": "lang-pkgs",
+      "Type": "dotnet-core"
+    },
+    {
+      "Target": "EcfDotnet.E2ETests.New/bin/Debug/net9.0/EcfDotnet.E2ETests.New.deps.json",
+      "Class": "lang-pkgs",
+      "Type": "dotnet-core"
+    },
+    {
+      "Target": "bin/Debug/net8.0/EcfDotnet.deps.json",
+      "Class": "lang-pkgs",
+      "Type": "dotnet-core",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2023-36414",
+          "PkgID": "Azure.Identity/1.7.0",
+          "PkgName": "Azure.Identity",
+          "PkgIdentifier": {
+            "PURL": "pkg:nuget/Azure.Identity@1.7.0",
+            "UID": "8f672b896ff8ec91"
+          },
+          "InstalledVersion": "1.7.0",
+          "FixedVersion": "1.10.2",
+          "Status": "fixed",
+          "Layer": {},
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-36414",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory NuGet",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anuget"
+          },
+          "Title": "Azure Identity SDK Remote Code Execution Vulnerability",
+          "Description": "Azure Identity SDK Remote Code Execution Vulnerability",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-77"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 8.8
+            }
+          },
+          "References": [
+            "https://github.com/Azure/azure-sdk-for-net",
+            "https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/CHANGELOG.md#1102-2023-10-10",
+            "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-36414",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-36414"
+          ],
+          "PublishedDate": "2023-10-10T18:15:12Z",
+          "LastModifiedDate": "2024-11-21T08:09:42.46Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-29992",
+          "PkgID": "Azure.Identity/1.7.0",
+          "PkgName": "Azure.Identity",
+          "PkgIdentifier": {
+            "PURL": "pkg:nuget/Azure.Identity@1.7.0",
+            "UID": "8f672b896ff8ec91"
+          },
+          "InstalledVersion": "1.7.0",
+          "FixedVersion": "1.11.0",
+          "Status": "fixed",
+          "Layer": {},
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-29992",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory NuGet",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anuget"
+          },
+          "Title": "Azure Identity Library for .NET Information Disclosure Vulnerability",
+          "Description": "Azure Identity Library for .NET Information Disclosure Vulnerability",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-522"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 5.5
+            }
+          },
+          "References": [
+            "https://github.com/Azure/azure-sdk-for-net",
+            "https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/CHANGELOG.md#1110-2024-04-09",
+            "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-29992",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-29992"
+          ],
+          "PublishedDate": "2024-04-09T17:16:02.437Z",
+          "LastModifiedDate": "2025-01-09T14:45:52.75Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-35255",
+          "PkgID": "Azure.Identity/1.7.0",
+          "PkgName": "Azure.Identity",
+          "PkgIdentifier": {
+            "PURL": "pkg:nuget/Azure.Identity@1.7.0",
+            "UID": "8f672b896ff8ec91"
+          },
+          "InstalledVersion": "1.7.0",
+          "FixedVersion": "1.11.4",
+          "Status": "fixed",
+          "Layer": {},
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-35255",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory NuGet",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anuget"
+          },
+          "Title": "azure-identity: Azure Identity Libraries Elevation of Privilege Vulnerability in github.com/Azure/azure-sdk-for-go/sdk/azidentity",
+          "Description": "Azure Identity Libraries and Microsoft Authentication Library Elevation of Privilege Vulnerability",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-362"
+          ],
+          "VendorSeverity": {
+            "amazon": 3,
+            "azure": 2,
+            "cbl-mariner": 2,
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 5.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 5.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-35255",
+            "https://github.com/Azure/azure-sdk-for-go/commit/50774cd9709905523136fb05e8c85a50e8984499",
+            "https://github.com/Azure/azure-sdk-for-java/commit/5bf020d6ea056de40e2738e3647a4e06f902c18d",
+            "https://github.com/Azure/azure-sdk-for-js/commit/c6aa75d312ae463e744163cedfd8fc480cc8d492",
+            "https://github.com/Azure/azure-sdk-for-net/commit/9279a4f38bf69b457cfb9b354f210e0a540a5c53",
+            "https://github.com/Azure/azure-sdk-for-python/commit/cb065acd7d0f957327dc4f02d1646d4e51a94178",
+            "https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/4806#issuecomment-2178960340",
+            "https://github.com/advisories/GHSA-m5vv-6r4h-3vj9",
+            "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-35255",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-35255",
+            "https://www.cve.org/CVERecord?id=CVE-2024-35255"
+          ],
+          "PublishedDate": "2024-06-11T17:16:03.55Z",
+          "LastModifiedDate": "2024-11-21T09:20:01.923Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-0056",
+          "PkgID": "Microsoft.Data.SqlClient/5.1.1",
+          "PkgName": "Microsoft.Data.SqlClient",
+          "PkgIdentifier": {
+            "PURL": "pkg:nuget/Microsoft.Data.SqlClient@5.1.1",
+            "UID": "3f5febc7e25b1481"
+          },
+          "InstalledVersion": "5.1.1",
+          "FixedVersion": "2.1.7, 3.1.5, 4.0.5, 5.1.3",
+          "Status": "fixed",
+          "Layer": {},
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-0056",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory NuGet",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anuget"
+          },
+          "Title": "dotnet: Information Disclosure: MD.SqlClient(MDS) \u0026 System.data.SQLClient (SDS)",
+          "Description": "Microsoft.Data.SqlClient and System.Data.SqlClient SQL Data Provider Security Feature Bypass Vulnerability",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-319"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 3,
+            "bitnami": 3,
+            "ghsa": 3,
+            "oracle-oval": 3,
+            "photon": 3,
+            "redhat": 3,
+            "rocky": 3
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N",
+              "V3Score": 8.7
+            },
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N",
+              "V3Score": 8.7
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2024:0156",
+            "https://access.redhat.com/security/cve/CVE-2024-0056",
+            "https://bugzilla.redhat.com/2255384",
+            "https://bugzilla.redhat.com/2255386",
+            "https://bugzilla.redhat.com/2257566",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2255384",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2255386",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2257566",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-0056",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-0057",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-21319",
+            "https://errata.almalinux.org/9/ALSA-2024-0156.html",
+            "https://errata.rockylinux.org/RLSA-2024:0158",
+            "https://github.com/dotnet/announcements/issues/292",
+            "https://github.com/dotnet/core/blob/ce802c56fde3abe2ae14ad09a1b8991b6709c18b/release-notes/6.0/6.0.26/6.0.26.md",
+            "https://linux.oracle.com/cve/CVE-2024-0056.html",
+            "https://linux.oracle.com/errata/ELSA-2024-0158.html",
+            "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-0056",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-0056",
+            "https://www.cve.org/CVERecord?id=CVE-2024-0056"
+          ],
+          "PublishedDate": "2024-01-09T18:15:46.783Z",
+          "LastModifiedDate": "2024-11-21T08:45:49.18Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-21319",
+          "PkgID": "Microsoft.IdentityModel.JsonWebTokens/6.24.0",
+          "PkgName": "Microsoft.IdentityModel.JsonWebTokens",
+          "PkgIdentifier": {
+            "PURL": "pkg:nuget/Microsoft.IdentityModel.JsonWebTokens@6.24.0",
+            "UID": "5a671efefd4e2a82"
+          },
+          "InstalledVersion": "6.24.0",
+          "FixedVersion": "5.7.0, 6.34.0, 7.1.2",
+          "Status": "fixed",
+          "Layer": {},
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-21319",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory NuGet",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anuget"
+          },
+          "Title": "dotnet: .NET Denial of Service Vulnerability",
+          "Description": "Microsoft Identity Denial of service vulnerability",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-20"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 3,
+            "bitnami": 2,
+            "ghsa": 2,
+            "oracle-oval": 3,
+            "photon": 2,
+            "redhat": 2,
+            "rocky": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:N/I:N/A:H",
+              "V3Score": 6.8
+            },
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:N/I:N/A:H",
+              "V3Score": 6.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:N/I:N/A:H",
+              "V3Score": 6.8
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2024:0156",
+            "https://access.redhat.com/security/cve/CVE-2024-21319",
+            "https://bugzilla.redhat.com/2255384",
+            "https://bugzilla.redhat.com/2255386",
+            "https://bugzilla.redhat.com/2257566",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2255384",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2255386",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2257566",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-0056",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-0057",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-21319",
+            "https://devblogs.microsoft.com/dotnet/january-2024-updates/",
+            "https://errata.almalinux.org/9/ALSA-2024-0156.html",
+            "https://errata.rockylinux.org/RLSA-2024:0158",
+            "https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/security/advisories/GHSA-8g9c-28fc-mcx2",
+            "https://github.com/dotnet/announcements/issues/290",
+            "https://github.com/dotnet/aspnetcore",
+            "https://github.com/dotnet/aspnetcore/security/advisories/GHSA-59j7-ghrg-fj52",
+            "https://github.com/dotnet/core/blob/ce802c56fde3abe2ae14ad09a1b8991b6709c18b/release-notes/6.0/6.0.26/6.0.26.md",
+            "https://linux.oracle.com/cve/CVE-2024-21319.html",
+            "https://linux.oracle.com/errata/ELSA-2024-0158.html",
+            "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-21319",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-21319",
+            "https://ubuntu.com/security/notices/USN-6578-1",
+            "https://www.cve.org/CVERecord?id=CVE-2024-21319"
+          ],
+          "PublishedDate": "2024-01-09T19:15:12.07Z",
+          "LastModifiedDate": "2024-11-21T08:54:06.097Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-21319",
+          "PkgID": "System.IdentityModel.Tokens.Jwt/6.24.0",
+          "PkgName": "System.IdentityModel.Tokens.Jwt",
+          "PkgIdentifier": {
+            "PURL": "pkg:nuget/System.IdentityModel.Tokens.Jwt@6.24.0",
+            "UID": "eabebaaddb012456"
+          },
+          "InstalledVersion": "6.24.0",
+          "FixedVersion": "5.7.0, 6.34.0, 7.1.2",
+          "Status": "fixed",
+          "Layer": {},
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-21319",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory NuGet",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anuget"
+          },
+          "Title": "dotnet: .NET Denial of Service Vulnerability",
+          "Description": "Microsoft Identity Denial of service vulnerability",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-20"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 3,
+            "bitnami": 2,
+            "ghsa": 2,
+            "oracle-oval": 3,
+            "photon": 2,
+            "redhat": 2,
+            "rocky": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:N/I:N/A:H",
+              "V3Score": 6.8
+            },
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:N/I:N/A:H",
+              "V3Score": 6.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:N/I:N/A:H",
+              "V3Score": 6.8
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2024:0156",
+            "https://access.redhat.com/security/cve/CVE-2024-21319",
+            "https://bugzilla.redhat.com/2255384",
+            "https://bugzilla.redhat.com/2255386",
+            "https://bugzilla.redhat.com/2257566",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2255384",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2255386",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2257566",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-0056",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-0057",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-21319",
+            "https://devblogs.microsoft.com/dotnet/january-2024-updates/",
+            "https://errata.almalinux.org/9/ALSA-2024-0156.html",
+            "https://errata.rockylinux.org/RLSA-2024:0158",
+            "https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/security/advisories/GHSA-8g9c-28fc-mcx2",
+            "https://github.com/dotnet/announcements/issues/290",
+            "https://github.com/dotnet/aspnetcore",
+            "https://github.com/dotnet/aspnetcore/security/advisories/GHSA-59j7-ghrg-fj52",
+            "https://github.com/dotnet/core/blob/ce802c56fde3abe2ae14ad09a1b8991b6709c18b/release-notes/6.0/6.0.26/6.0.26.md",
+            "https://linux.oracle.com/cve/CVE-2024-21319.html",
+            "https://linux.oracle.com/errata/ELSA-2024-0158.html",
+            "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-21319",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-21319",
+            "https://ubuntu.com/security/notices/USN-6578-1",
+            "https://www.cve.org/CVERecord?id=CVE-2024-21319"
+          ],
+          "PublishedDate": "2024-01-09T19:15:12.07Z",
+          "LastModifiedDate": "2024-11-21T08:54:06.097Z"
+        }
+      ]
+    },
+    {
+      "Target": "bin/Debug/net9.0/EcfDotnet.deps.json",
+      "Class": "lang-pkgs",
+      "Type": "dotnet-core"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+Analyse SonarQube
+=================
+Date: 06/05/2025 23:02:57
+Projet: ECF_2_DOTNET
+URL des résultats: http://localhost:9000/dashboard?id=ECF_2_DOTNET
+
+Pour voir les résultats complets, accédez à l'URL ci-dessus.
