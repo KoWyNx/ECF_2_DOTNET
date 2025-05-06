@@ -23,13 +23,13 @@ jobs:
           dotnet-version: '8.0.x'
       
       - name: 🧰 Restauration des dépendances
-        run: dotnet restore
+        run: dotnet restore EcfDotnet.csproj
       
       - name: 🏗️ Compilation du projet
-        run: dotnet build --no-restore --configuration Release
+        run: dotnet build EcfDotnet.csproj --no-restore --configuration Release
       
       - name: 🧪 Exécution des tests unitaires
-        run: dotnet test --no-build --configuration Release --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./coverage.opencover.xml
+        run: dotnet test EcfDotnet.csproj --no-build --configuration Release --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./coverage.opencover.xml
   
   trivy-scan:
     name: 🔍 Analyse des dépendances
@@ -134,10 +134,10 @@ jobs:
           dotnet-version: '8.0.x'
       
       - name: 🧰 Restauration des dépendances
-        run: dotnet restore
+        run: dotnet restore EcfDotnet.csproj
       
       - name: 🏗️ Compilation du projet
-        run: dotnet build --no-restore --configuration Release
+        run: dotnet build EcfDotnet.csproj --no-restore --configuration Release
       
       - name: 🎭 Installation des navigateurs Playwright
         run: npx playwright install chromium
