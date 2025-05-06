@@ -96,19 +96,24 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
+          # Vérification des variables d'environnement
+          echo "SONAR_HOST_URL: ${SONAR_HOST_URL:-non défini}"
+          echo "SONAR_TOKEN: ${SONAR_TOKEN:0:5}... (masqué)"
+          
+          # Exécution de l'analyse avec valeurs explicites
           dotnet sonarscanner begin \
             /k:"ECF_2_DOTNET" \
             /n:"ECF_2_DOTNET" \
-            /d:sonar.host.url="${SONAR_HOST_URL}" \
-            /d:sonar.login="${SONAR_TOKEN}" \
+            /d:sonar.host.url="${SONAR_HOST_URL:-http://localhost:9000}" \
+            /d:sonar.login="${SONAR_TOKEN:-squ_12746e19fbeaa144c66692b406fdd5075b7c5b30}" \
             /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" \
             /d:sonar.cs.vstest.reportsPaths="**/*.trx" \
             /d:sonar.coverage.exclusions="**Test*.cs" \
             /d:sonar.sourceEncoding="UTF-8"
           
-          dotnet build --no-incremental
+          dotnet build EcfDotnet.csproj --no-incremental
           
-          dotnet sonarscanner end /d:sonar.login="${SONAR_TOKEN}"
+          dotnet sonarscanner end /d:sonar.login="${SONAR_TOKEN:-squ_12746e19fbeaa144c66692b406fdd5075b7c5b30}"
       
       - name: 📝 Création du rapport d'information SonarQube
         run: |
@@ -117,7 +122,7 @@ jobs:
           echo "=================" >> rapports/sonar-analysis-info.txt
           echo "Date: $(date '+%d/%m/%Y %H:%M:%S')" >> rapports/sonar-analysis-info.txt
           echo "Projet: ECF_2_DOTNET" >> rapports/sonar-analysis-info.txt
-          echo "URL des résultats: ${SONAR_HOST_URL}/dashboard?id=ECF_2_DOTNET" >> rapports/sonar-analysis-info.txt
+          echo "URL des résultats: ${SONAR_HOST_URL:-http://localhost:9000}/dashboard?id=ECF_2_DOTNET" >> rapports/sonar-analysis-info.txt
   
   e2e-tests:
     name: 🌐 Tests End-to-End
