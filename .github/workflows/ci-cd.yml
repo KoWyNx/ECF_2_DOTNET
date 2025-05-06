@@ -87,23 +87,49 @@ jobs:
         with:
           dotnet-version: '8.0.x'
       
-      - name: 📊 Simulation d'analyse SonarQube
+      - name: 🧰 Installation de SonarScanner
+        run: dotnet tool install --global dotnet-sonarscanner
+      
+      - name: 🧪 Exécution des tests avec couverture
+        run: dotnet test EcfDotnet.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+      
+      - name: 📊 Analyse SonarQube
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL || 'http://sonarqube:9000' }}
         run: |
-          echo "Simulation de l'analyse SonarQube pour la présentation"
-          echo "Dans un environnement de production, cette étape se connecterait à un serveur SonarQube"
-          echo "Pour la présentation, nous utilisons SonarQube en local uniquement"
+          # Vérification de la disponibilité de SonarQube
+          echo "Tentative de connexion à SonarQube à ${SONAR_HOST_URL}..."
           
-          # Compilation du projet sans analyse SonarQube
-          dotnet build EcfDotnet.csproj --configuration Release
+          # Démarrage de l'analyse SonarQube
+          dotnet sonarscanner begin \
+            /k:"ECF_2_DOTNET" \
+            /n:"ECF_2_DOTNET" \
+            /d:sonar.host.url="${SONAR_HOST_URL}" \
+            /d:sonar.login="${SONAR_TOKEN}" \
+            /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" \
+            /d:sonar.coverage.exclusions="**Test*.cs" \
+            /d:sonar.sourceEncoding="UTF-8"
+          
+          # Compilation du projet
+          dotnet build EcfDotnet.csproj --no-incremental
+          
+          # Finalisation de l'analyse
+          dotnet sonarscanner end /d:sonar.login="${SONAR_TOKEN}"
       
       - name: 📝 Création du rapport d'information SonarQube
         run: |
           mkdir -p rapports
-          echo "Analyse SonarQube (Simulation)" > rapports/sonar-analysis-info.txt
-          echo "=================" >> rapports/sonar-analysis-info.txt
-          echo "Date: $(date '+%d/%m/%Y %H:%M:%S')" >> rapports/sonar-analysis-info.txt
-          echo "Projet: ECF_2_DOTNET" >> rapports/sonar-analysis-info.txt
-          echo "Note: Pour la présentation, l'analyse SonarQube est exécutée localement" >> rapports/sonar-analysis-info.txt
+          cat > rapports/sonar-analysis-info.txt << EOL
+Analyse SonarQube
+=================
+Date: $(date '+%d/%m/%Y %H:%M:%S')
+Projet: ECF_2_DOTNET
+URL des résultats: ${SONAR_HOST_URL}/dashboard?id=ECF_2_DOTNET
+
+Pour voir les résultats complets, accédez à l'URL ci-dessus.
+EOL
   
   e2e-tests:
     name: 🌐 Tests End-to-End
