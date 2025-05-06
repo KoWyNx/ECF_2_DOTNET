@@ -32,12 +32,10 @@ jobs:
         run: dotnet test --no-build --configuration Release --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./coverage.opencover.xml
       
       - name: 📊 Publication des résultats de tests
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v1
         with:
           name: test-results
-          path: |
-            **/coverage.opencover.xml
-            **/*.trx
+          path: coverage.opencover.xml
   
   trivy-scan:
     name: 🔍 Analyse des dépendances
@@ -63,7 +61,7 @@ jobs:
           trivy fs --severity CRITICAL,HIGH --format table .
       
       - name: 📊 Publication des rapports Trivy
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v1
         with:
           name: trivy-report
           path: rapports/trivy-deps.json
@@ -86,7 +84,7 @@ jobs:
           severity: 'CRITICAL,HIGH'
         
       - name: 📊 Publication des rapports Trivy Docker
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v1
         with:
           name: trivy-docker-report
           path: trivy-dockerfile.json
@@ -145,7 +143,7 @@ jobs:
           echo "URL des résultats: ${SONAR_HOST_URL}/dashboard?id=ECF_2_DOTNET" >> rapports/sonar-analysis-info.txt
       
       - name: 📊 Publication du rapport SonarQube
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v1
         with:
           name: sonar-report
           path: rapports/sonar-analysis-info.txt
@@ -182,12 +180,10 @@ jobs:
         run: dotnet test EcfDotnet.E2ETests.New/EcfDotnet.E2ETests.New.csproj --no-build --configuration Release
       
       - name: 📊 Publication des rapports Playwright
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v1
         with:
           name: playwright-report
-          path: |
-            playwright-report.html
-            *.png
+          path: playwright-report.html
   
   publish-reports:
     name: 📋 Publication des rapports
@@ -266,7 +262,7 @@ jobs:
           EOL
       
       - name: 📊 Publication des rapports consolidés
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v1
         with:
           name: rapports-consolides
           path: rapports-consolides/
