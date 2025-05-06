@@ -30,12 +30,6 @@ jobs:
       
       - name: 🧪 Exécution des tests unitaires
         run: dotnet test --no-build --configuration Release --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./coverage.opencover.xml
-      
-      - name: 📊 Publication des résultats de tests
-        uses: actions/upload-artifact@v1
-        with:
-          name: test-results
-          path: coverage.opencover.xml
   
   trivy-scan:
     name: 🔍 Analyse des dépendances
@@ -59,12 +53,6 @@ jobs:
           mkdir -p rapports
           trivy fs --format json --output rapports/trivy-deps.json .
           trivy fs --severity CRITICAL,HIGH --format table .
-      
-      - name: 📊 Publication des rapports Trivy
-        uses: actions/upload-artifact@v1
-        with:
-          name: trivy-report
-          path: rapports/trivy-deps.json
   
   trivy-docker-scan:
     name: 🔍 Analyse Docker avec Trivy
@@ -82,12 +70,6 @@ jobs:
           format: 'json'
           output: 'trivy-dockerfile.json'
           severity: 'CRITICAL,HIGH'
-        
-      - name: 📊 Publication des rapports Trivy Docker
-        uses: actions/upload-artifact@v1
-        with:
-          name: trivy-docker-report
-          path: trivy-dockerfile.json
   
   sonarqube-analysis:
     name: 📈 Analyse de qualité du code
@@ -107,11 +89,6 @@ jobs:
       
       - name: 🧰 Installation de SonarScanner
         run: dotnet tool install --global dotnet-sonarscanner
-      
-      - name: 📥 Téléchargement des résultats de tests
-        uses: actions/download-artifact@v3
-        with:
-          name: test-results
       
       - name: 📊 Analyse SonarQube
         env:
@@ -141,12 +118,6 @@ jobs:
           echo "Date: $(date '+%d/%m/%Y %H:%M:%S')" >> rapports/sonar-analysis-info.txt
           echo "Projet: ECF_2_DOTNET" >> rapports/sonar-analysis-info.txt
           echo "URL des résultats: ${SONAR_HOST_URL}/dashboard?id=ECF_2_DOTNET" >> rapports/sonar-analysis-info.txt
-      
-      - name: 📊 Publication du rapport SonarQube
-        uses: actions/upload-artifact@v1
-        with:
-          name: sonar-report
-          path: rapports/sonar-analysis-info.txt
   
   e2e-tests:
     name: 🌐 Tests End-to-End
@@ -178,91 +149,3 @@ jobs:
       
       - name: 🧪 Exécution des tests E2E
         run: dotnet test EcfDotnet.E2ETests.New/EcfDotnet.E2ETests.New.csproj --no-build --configuration Release
-      
-      - name: 📊 Publication des rapports Playwright
-        uses: actions/upload-artifact@v1
-        with:
-          name: playwright-report
-          path: playwright-report.html
-  
-  publish-reports:
-    name: 📋 Publication des rapports
-    runs-on: ubuntu-latest
-    needs: [build-and-test, e2e-tests, trivy-scan, trivy-docker-scan, sonarqube-analysis]
-    if: always()
-    
-    steps:
-      - name: 📥 Récupération du code
-        uses: actions/checkout@v3
-      
-      - name: 📥 Téléchargement de tous les rapports
-        uses: actions/download-artifact@v3
-        with:
-          path: all-reports
-      
-      - name: 📦 Préparation des rapports
-        run: |
-          mkdir -p rapports-consolides
-          cp -r all-reports/test-results/* rapports-consolides/ || true
-          cp -r all-reports/playwright-report/* rapports-consolides/ || true
-          cp -r all-reports/trivy-report/* rapports-consolides/ || true
-          cp -r all-reports/trivy-docker-report/* rapports-consolides/ || true
-          cp -r all-reports/sonar-report/* rapports-consolides/ || true
-      
-      - name: 📊 Création du rapport de synthèse
-        run: |
-          cat > rapports-consolides/rapport-synthese.html << EOL
-          <!DOCTYPE html>
-          <html lang="fr">
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>Rapport de Synthèse - ECF_2_DOTNET</title>
-              <style>
-                  body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; color: #333; }
-                  h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-                  h2 { color: #3498db; margin-top: 20px; }
-                  .section { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
-                  .success { color: #28a745; }
-                  .warning { color: #ffc107; }
-                  .danger { color: #dc3545; }
-                  .info { color: #17a2b8; }
-              </style>
-          </head>
-          <body>
-              <h1>Rapport de Synthèse - ECF_2_DOTNET</h1>
-              <div class="section">
-                  <h2>Informations Générales</h2>
-                  <p>Date du rapport: $(date '+%d/%m/%Y %H:%M:%S')</p>
-                  <p>Branche: \${{ github.ref_name }}</p>
-                  <p>Commit: \${{ github.sha }}</p>
-              </div>
-              
-              <div class="section">
-                  <h2>Résultats des Tests</h2>
-                  <p>Les résultats détaillés des tests sont disponibles dans les artefacts du pipeline.</p>
-              </div>
-              
-              <div class="section">
-                  <h2>Analyse des Dépendances (Trivy)</h2>
-                  <p>Le rapport complet est disponible dans les artefacts du pipeline.</p>
-              </div>
-              
-              <div class="section">
-                  <h2>Analyse Docker avec Trivy</h2>
-                  <p>Le rapport complet est disponible dans les artefacts du pipeline.</p>
-              </div>
-              
-              <div class="section">
-                  <h2>Analyse de Qualité du Code (SonarQube)</h2>
-                  <p>Le rapport complet est disponible sur SonarQube.</p>
-              </div>
-          </body>
-          </html>
-          EOL
-      
-      - name: 📊 Publication des rapports consolidés
-        uses: actions/upload-artifact@v1
-        with:
-          name: rapports-consolides
-          path: rapports-consolides/
