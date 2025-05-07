@@ -144,9 +144,8 @@ jobs:
       
       - name:  Installation des navigateurs Playwright
         run: |
-          dotnet build EcfDotnet.E2ETests.New/EcfDotnet.E2ETests.New.csproj --no-restore
           dotnet tool install --global Microsoft.Playwright.CLI
-          playwright install
+          playwright install chromium
       
       - name:  Démarrage de l'application
         run: |
