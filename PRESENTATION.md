@@ -15,10 +15,6 @@
 docker-compose up -d
 
 # Tests E2E
-# Démarrer l'application dans un terminal
-dotnet run --project EcfDotnet.csproj --urls=http://localhost:5001
-
-# Puis dans un autre terminal
 cd EcfDotnet.E2ETests.New && dotnet test
 
 # Analyse Trivy
