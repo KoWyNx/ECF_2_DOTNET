@@ -98,8 +98,20 @@ jobs:
       - name:  Démarrage de l'analyse SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL || 'http://localhost:9000' }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
+          # Vérification que l'URL SonarQube est définie
+          if [ -z "$SONAR_HOST_URL" ]; then
+            echo "SONAR_HOST_URL n'est pas défini. Analyse SonarQube ignorée."
+            exit 0
+          fi
+          
+          # Vérification de la disponibilité du serveur SonarQube
+          if ! curl -s -f -o /dev/null "$SONAR_HOST_URL"; then
+            echo "Impossible de se connecter à $SONAR_HOST_URL. Analyse SonarQube ignorée."
+            exit 0
+          fi
+          
           dotnet sonarscanner begin \
             /k:"ECF_2_DOTNET" \
             /n:"ECF_2_DOTNET" \
@@ -115,7 +127,21 @@ jobs:
       - name:  Finalisation de l'analyse SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: dotnet sonarscanner end /d:sonar.login="${SONAR_TOKEN}"
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        run: |
+          # Vérification que l'URL SonarQube est définie
+          if [ -z "$SONAR_HOST_URL" ]; then
+            echo "SONAR_HOST_URL n'est pas défini. Finalisation de l'analyse SonarQube ignorée."
+            exit 0
+          fi
+          
+          # Vérification de la disponibilité du serveur SonarQube
+          if ! curl -s -f -o /dev/null "$SONAR_HOST_URL"; then
+            echo "Impossible de se connecter à $SONAR_HOST_URL. Finalisation de l'analyse SonarQube ignorée."
+            exit 0
+          fi
+          
+          dotnet sonarscanner end /d:sonar.login="${SONAR_TOKEN}"
       
       - name:  Création du rapport d'information
         run: |
@@ -142,9 +168,18 @@ jobs:
       - name:  Restauration des dépendances des tests E2E
         run: dotnet restore EcfDotnet.E2ETests.New/EcfDotnet.E2ETests.New.csproj
       
-      - name:  Installation des navigateurs Playwright
+      - name:  Installation et configuration de Playwright
         run: |
+          # Installation du package Playwright
+          dotnet add EcfDotnet.E2ETests.New/EcfDotnet.E2ETests.New.csproj package Microsoft.Playwright
+          
+          # Compilation du projet pour s'assurer que les dépendances sont résolues
+          dotnet build EcfDotnet.E2ETests.New/EcfDotnet.E2ETests.New.csproj
+          
+          # Installation de l'outil CLI Playwright
           dotnet tool install --global Microsoft.Playwright.CLI
+          
+          # Installation des navigateurs
           playwright install chromium
       
       - name:  Démarrage de l'application
