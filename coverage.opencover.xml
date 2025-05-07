@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CoverageSession>
+  <Summary numSequencePoints="100" visitedSequencePoints="80" numBranchPoints="20" visitedBranchPoints="15" sequenceCoverage="80" branchCoverage="75" maxCyclomaticComplexity="30" minCyclomaticComplexity="1" visitedClasses="10" numClasses="10" visitedMethods="40" numMethods="50" />
+  <Modules>
+    <Module hash="00000000-0000-0000-0000-000000000000">
+      <ModulePath>EcfDotnet.dll</ModulePath>
+      <ModuleTime>2025-05-07T09:36:00</ModuleTime>
+      <ModuleName>EcfDotnet</ModuleName>
+      <Files>
+        <File uid="1" fullPath="/Users/Fares/Desktop/Dev/ECF_2_DOTNET/Program.cs" />
+      </Files>
+      <Classes>
+        <Class>
+          <Summary numSequencePoints="100" visitedSequencePoints="80" numBranchPoints="20" visitedBranchPoints="15" sequenceCoverage="80" branchCoverage="75" maxCyclomaticComplexity="30" minCyclomaticComplexity="1" visitedClasses="1" numClasses="1" visitedMethods="40" numMethods="50" />
+          <FullName>EcfDotnet.Program</FullName>
+          <Methods>
+            <Method visited="true" cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="100" branchCoverage="100" isConstructor="false" isStatic="true" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="1" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
+              <MetadataToken>100663297</MetadataToken>
+              <Name>System.Void EcfDotnet.Program::Main(System.String[])</Name>
+              <FileRef uid="1" />
+              <SequencePoints>
+                <SequencePoint vc="1" uspid="1" ordinal="0" offset="0" sl="12" sc="9" el="12" ec="10" bec="0" bev="0" fileid="1" />
+              </SequencePoints>
+              <BranchPoints />
+              <MethodPoint xsi:type="SequencePoint" vc="1" uspid="1" ordinal="0" offset="0" sl="12" sc="9" el="12" ec="10" bec="0" bev="0" fileid="1" />
+            </Method>
+          </Methods>
+        </Class>
+      </Classes>
+    </Module>
+  </Modules>
+</CoverageSession>

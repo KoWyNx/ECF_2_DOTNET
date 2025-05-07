@@ -105,6 +105,7 @@
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/Views/Shared/_Layout.cshtml.css
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/.gitignore
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/app.log
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/coverage.opencover.xml
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/docker-compose.yml
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/Dockerfile
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/ECF.fig

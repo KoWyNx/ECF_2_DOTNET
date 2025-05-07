@@ -8,6 +8,7 @@ NC='\033[0m'
 
 echo -e "${BLEU}=== Démarrage de l'analyse SonarQube ===${NC}"
 
+# Création du répertoire de rapports
 mkdir -p rapports
 
 # Vérifier si dotnet-sonarscanner est installé
@@ -28,34 +29,11 @@ if [ -z "$SONAR_TOKEN" ]; then
     
     # Définir l'URL de SonarQube (par défaut: localhost)
     SONAR_HOST_URL=${SONAR_HOST_URL:-"http://localhost:9000"}
+    
 else
     SONAR_HOST_URL=${SONAR_HOST_URL:-"http://localhost:9000"}
     echo -e "${VERT}Configuration SonarQube trouvée.${NC}"
     echo -e "${JAUNE}URL SonarQube: ${SONAR_HOST_URL}${NC}"
-fi
-
-# Détecter si nous sommes dans GitHub Actions
-if [ -n "$GITHUB_ACTIONS" ]; then
-    echo -e "${JAUNE}Détection de l'environnement GitHub Actions${NC}"
-    echo -e "${JAUNE}Adaptation de l'analyse pour CI/CD...${NC}"
-    
-    # Exécuter les tests avec couverture de code
-    echo -e "\n${JAUNE}Exécution des tests avec couverture de code...${NC}"
-    dotnet test EcfDotnet.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover || true
-    
-    # Créer un rapport simulé pour GitHub Actions
-    echo -e "${JAUNE}Création d'un rapport d'analyse simulé pour CI/CD${NC}"
-    cat > rapports/sonar-analysis-info.txt << EOL
-Analyse SonarQube (CI/CD)
-=================
-Date: $(date '+%d/%m/%Y %H:%M:%S')
-Projet: ECF_2_DOTNET
-Note: Analyse simulée pour l'environnement CI/CD
-EOL
-    
-    echo -e "${VERT}✓ Rapport d'analyse créé pour CI/CD${NC}"
-    echo -e "\n${BLEU}=== Analyse SonarQube terminée (mode CI/CD) ===${NC}"
-    exit 0
 fi
 
 # Exécuter les tests avec couverture de code
@@ -115,6 +93,8 @@ Analyse SonarQube
 Date: $(date '+%d/%m/%Y %H:%M:%S')
 Projet: ECF_2_DOTNET
 URL des résultats: ${SONAR_HOST_URL}/dashboard?id=ECF_2_DOTNET
+
+Pour voir les résultats complets, accédez à l'URL ci-dessus.
 EOL
 
     echo -e "${VERT}✓ Informations de l'analyse enregistrées dans: rapports/sonar-analysis-info.txt${NC}"

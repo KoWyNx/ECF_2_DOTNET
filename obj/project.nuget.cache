@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZIeH9gpLCtc=",
+  "dgSpecHash": "dGpWl1xP6aI=",
   "success": true,
   "projectFilePath": "/Users/Fares/Desktop/Dev/ECF_2_DOTNET/EcfDotnet.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "/Users/Fares/.nuget/packages/awssdk.securitytoken/3.7.100.14/awssdk.securitytoken.3.7.100.14.nupkg.sha512",
     "/Users/Fares/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
     "/Users/Fares/.nuget/packages/azure.identity/1.7.0/azure.identity.1.7.0.nupkg.sha512",
+    "/Users/Fares/.nuget/packages/coverlet.msbuild/6.0.4/coverlet.msbuild.6.0.4.nupkg.sha512",
     "/Users/Fares/.nuget/packages/dnsclient/1.6.1/dnsclient.1.6.1.nupkg.sha512",
     "/Users/Fares/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/Fares/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
