@@ -46,7 +46,18 @@ trivy image ecf_2_dotnet-app:latest --format table
 # Analyse de qualité avec SonarQube
 export SONAR_TOKEN=squ_12746e19fbeaa144c66692b406fdd5075b7c5b30
 export SONAR_HOST_URL=http://localhost:9000
-./run-sonar-analysis.sh
+
+# Installer SonarScanner si nécessaire
+dotnet tool install --global dotnet-sonarscanner
+
+# Démarrer l'analyse
+dotnet sonarscanner begin /k:"ECF_2_DOTNET" /n:"ECF_2_DOTNET" /d:sonar.host.url="$SONAR_HOST_URL" /d:sonar.login="$SONAR_TOKEN"
+
+# Compiler le projet
+dotnet build EcfDotnet.csproj
+
+# Finaliser l'analyse
+dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
 
 # Accès aux rapports
 echo "Rapport SonarQube: http://localhost:9000/dashboard?id=ECF_2_DOTNET"

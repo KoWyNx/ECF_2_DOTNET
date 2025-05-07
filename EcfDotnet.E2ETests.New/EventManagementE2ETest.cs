@@ -72,14 +72,16 @@ namespace EcfDotnet.E2ETests.New
                 Console.WriteLine("Formulaire rempli, capture d'écran prise");
                 
                 // Étape 4: Soumettre le formulaire et attendre la réponse
-                var navigationTask = page.WaitForNavigationAsync(new PageWaitForNavigationOptions 
-                { 
-                    Timeout = 30000,
-                    WaitUntil = WaitUntilState.NetworkIdle // Attendre que le réseau soit inactif
-                });
+                var submitButton = await page.QuerySelectorAsync("button[type='submit']");
                 
-                await page.ClickAsync("button[type='submit']");
-                await navigationTask;
+                // Créer une tâche pour attendre la navigation
+                var waitForNavigationTask = page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+                
+                // Cliquer sur le bouton
+                await submitButton.ClickAsync();
+                
+                // Attendre que la navigation soit terminée
+                await waitForNavigationTask;
                 
                 // Vérifier si nous sommes sur la page d'index ou si une erreur s'est produite
                 var currentUrl = page.Url;

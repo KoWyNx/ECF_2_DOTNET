@@ -92,14 +92,30 @@ jobs:
         with:
           dotnet-version: '8.0.x'
       
-      - name:  Préparation du script d'analyse
-        run: chmod +x run-sonar-analysis.sh
+      - name:  Installation de SonarScanner
+        run: dotnet tool install --global dotnet-sonarscanner
       
-      - name:  Exécution de l'analyse SonarQube
+      - name:  Démarrage de l'analyse SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL || 'http://localhost:9000' }}
-        run: ./run-sonar-analysis.sh
+        run: |
+          dotnet sonarscanner begin \
+            /k:"ECF_2_DOTNET" \
+            /n:"ECF_2_DOTNET" \
+            /d:sonar.host.url="${SONAR_HOST_URL}" \
+            /d:sonar.login="${SONAR_TOKEN}" \
+            /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" \
+            /d:sonar.coverage.exclusions="**Test*.cs" \
+            /d:sonar.sourceEncoding="UTF-8"
+      
+      - name:  Compilation du projet pour SonarQube
+        run: dotnet build EcfDotnet.csproj --no-incremental
+      
+      - name:  Finalisation de l'analyse SonarQube
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: dotnet sonarscanner end /d:sonar.login="${SONAR_TOKEN}"
       
       - name:  Création du rapport d'information
         run: |
@@ -127,7 +143,10 @@ jobs:
         run: dotnet restore EcfDotnet.E2ETests.New/EcfDotnet.E2ETests.New.csproj
       
       - name:  Installation des navigateurs Playwright
-        run: npx playwright install chromium
+        run: |
+          dotnet build EcfDotnet.E2ETests.New/EcfDotnet.E2ETests.New.csproj --no-restore
+          dotnet tool install --global Microsoft.Playwright.CLI
+          playwright install
       
       - name:  Démarrage de l'application
         run: |
