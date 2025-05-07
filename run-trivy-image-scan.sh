@@ -9,7 +9,7 @@ echo -e "${YELLOW}Analyse de l'image Docker avec Trivy...${NC}"
 # Créer le répertoire des rapports s'il n'existe pas
 mkdir -p rapports
 
-# Analyser l'image Docker
+# Analyse de l'image Docker
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
   -v "$(pwd)/rapports:/reports" \
   aquasec/trivy:latest image \
@@ -17,7 +17,7 @@ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
   --output /reports/trivy-image.json \
   ecf-dotnet-app:latest
 
-# Générer également un rapport HTML pour une meilleure lisibilité
+# Génère également un rapport HTML 
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
   -v "$(pwd)/rapports:/reports" \
   aquasec/trivy:latest image \

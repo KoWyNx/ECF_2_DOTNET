@@ -108,6 +108,7 @@
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/docker-compose.yml
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/Dockerfile
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/ECF.fig
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/PRESENTATION.md
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/rapports/sonar-analysis-info.txt
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/rapports/trivy-image-report.html
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/rapports/trivy-report.html
