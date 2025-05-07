@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-and-test:
-    name: 🔨 Compilation et Tests
+    name: Compilation et Tests
     runs-on: ubuntu-latest
     
     steps:
