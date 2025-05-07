@@ -27,7 +27,7 @@ namespace EcfDotnet.E2ETests.New
             try
             {
                 // Étape 1: Naviguer directement vers la page de liste des événements
-                await page.GotoAsync("http://localhost:5001/Evenement/Index");
+                await page.GotoAsync("http://localhost:5017/Evenement/Index");
                 await page.ScreenshotAsync(new PageScreenshotOptions 
                 { 
                     Path = "01-page-liste-evenements.png",
