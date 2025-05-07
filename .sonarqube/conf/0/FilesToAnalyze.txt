@@ -111,9 +111,15 @@
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/ECF.fig
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/PRESENTATION.md
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/rapports/sonar-analysis-info.txt
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/rapports/trivy-deps-summary.txt
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/rapports/trivy-deps.html
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/rapports/trivy-image-report.html
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/rapports/trivy-image-resume.txt
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/rapports/trivy-image-summary.txt
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/rapports/trivy-report.html
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/rapports/trivy-resume.txt
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/Readme.md
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/run-sonar-analysis.sh
+/Users/Fares/Desktop/Dev/ECF_2_DOTNET/run-trivy-deps-scan.sh
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/run-trivy-image-scan.sh
 /Users/Fares/Desktop/Dev/ECF_2_DOTNET/Properties/launchSettings.json

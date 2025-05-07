@@ -1,0 +1,43 @@
+=== RÉSUMÉ DE L'ANALYSE TRIVY DES DÉPENDANCES ===
+Date: 07/05/2025 10:26:33
+
+STATISTIQUES DES VULNÉRABILITÉS:
+
+VULNÉRABILITÉS CRITIQUES ET ÉLEVÉES:
+Pour les détails des vulnérabilités critiques et élevées, veuillez consulter:
+- rapports/trivy-deps-summary.txt (format texte)
+- rapports/trivy-deps.html (format HTML)
+
+RECOMMANDATIONS:
+1. Mettre à jour les packages avec des vulnérabilités CRITICAL en priorité
+2. Planifier la mise à jour des packages avec des vulnérabilités HIGH
+3. Consulter le rapport complet pour plus de détails
+
+Pour plus de détails, voir les rapports complets:
+- rapports/trivy-deps-summary.txt (format texte)
+- rapports/trivy-deps.html (format HTML)
+- rapports/trivy-deps.json (format JSON)
+
+APERÇU DU RAPPORT:
+-------------------
+
+Report Summary
+
+┌──────────────────────────────────────────────────────────────────────────┬─────────────┬─────────────────┬─────────┐
+│                                  Target                                  │    Type     │ Vulnerabilities │ Secrets │
+├──────────────────────────────────────────────────────────────────────────┼─────────────┼─────────────────┼─────────┤
+│ EcfDotnet.E2ETests.New/bin/Debug/net8.0/EcfDotnet.E2ETests.New.deps.json │ dotnet-core │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────┼─────────────┼─────────────────┼─────────┤
+│ EcfDotnet.E2ETests.New/bin/Debug/net9.0/EcfDotnet.E2ETests.New.deps.json │ dotnet-core │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────┼─────────────┼─────────────────┼─────────┤
+│ bin/Debug/net8.0/EcfDotnet.deps.json                                     │ dotnet-core │        6        │    -    │
+├──────────────────────────────────────────────────────────────────────────┼─────────────┼─────────────────┼─────────┤
+│ bin/Debug/net9.0/EcfDotnet.deps.json                                     │ dotnet-core │        0        │    -    │
+└──────────────────────────────────────────────────────────────────────────┴─────────────┴─────────────────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+bin/Debug/net8.0/EcfDotnet.deps.json (dotnet-core)
+...

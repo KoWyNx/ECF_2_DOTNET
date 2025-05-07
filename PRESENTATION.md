@@ -1,49 +1,59 @@
-# Guide de Présentation du TP - Tests E2E et CI/CD (5 minutes)
+# Guide de Présentation - Tests E2E et CI/CD
 
-## Introduction (30 secondes)
+## Plan de Présentation (5 minutes)
+
+### 1. Contexte du Projet (30 secondes)
 - Application web ASP.NET Core de gestion d'événements
-- Objectif : Pipeline CI/CD avec tests E2E et analyse de qualité
-- Technologies : Docker, Playwright, SonarQube, Trivy, GitHub Actions
+- Architecture : Application + SQL Server + SonarQube + Trivy
 
-## Points Clés à Présenter (4 minutes)
+### 2. Scénarios Testés en E2E (1 minute)
+- Tests avec Playwright pour valider le comportement utilisateur
+- Démonstration du test de création d'événement
+- Explication de l'approche de test de bout en bout
 
-### 1. Architecture Conteneurisée (45 secondes)
-- Application ASP.NET Core + SQL Server dans Docker
-- Démonstration rapide : `docker-compose up -d` et accès à l'application
+### 3. Analyse de Sécurité avec Trivy (1 minute)
+- Résultats de l'analyse des dépendances et de l'image Docker
+- Points critiques identifiés et leur impact
+- Stratégies de correction des vulnérabilités
 
-### 2. Tests E2E avec Playwright (45 secondes)
-- Validation du comportement utilisateur (création d'événement)
-- Montrer rapidement le code de test et exécuter `dotnet test`
+### 4. Rapport SonarQube (1 minute)
+- Dette technique identifiée
+- Bugs et code smells détectés
+- Qualité du code et couverture des tests
 
-### 3. Analyse de Sécurité avec Trivy (45 secondes)
-- Analyse des dépendances et de l'image Docker
-- Montrer les résultats et les vulnérabilités détectées
-
-### 4. Analyse de Code avec SonarQube (45 secondes)
-- Utilisation d'un script au lieu d'un conteneur pour plus de flexibilité
-- Présenter le tableau de bord et les problèmes détectés (code smells, bugs)
-
-### 5. Pipeline CI/CD avec GitHub Actions (45 secondes)
-- Workflow automatisé : build, test, analyse
-- Montrer le fichier de configuration et expliquer l'intégration des outils
-
-## Conclusion (30 secondes)
-- Bénéfices : détection précoce des problèmes, qualité de code, sécurité
-- Démonstration que le pipeline fonctionne de bout en bout
+### 5. Pipeline CI/CD (1 minute 30)
+- Choix de GitHub Actions (vs GitLab CI)
+- Étapes clés du workflow
+- Intégration des outils d'analyse et de test
 
 ## Commandes pour la Démonstration
+
 ```bash
-# Démarrer l'environnement
+# Démarrer l'environnement complet
 docker-compose up -d
 
-# Tests E2E
+# Exécuter les tests E2E avec Playwright
 cd EcfDotnet.E2ETests.New && dotnet test
 
-# Analyse Trivy
-docker-compose up trivy
+# Analyse de sécurité avec Trivy (dépendances)
+./run-trivy-deps-scan.sh
 
-# Analyse SonarQube
+# Analyse de sécurité avec Trivy (image Docker)
+./run-trivy-image-scan.sh
+
+# Analyse de qualité avec SonarQube
 export SONAR_TOKEN=squ_12746e19fbeaa144c66692b406fdd5075b7c5b30
 export SONAR_HOST_URL=http://localhost:9000
 ./run-sonar-analysis.sh
+
+# Accès aux rapports
+echo "Rapport SonarQube: http://localhost:9000/dashboard?id=ECF_2_DOTNET"
+echo "Rapports Trivy: voir le dossier ./rapports/"
 ```
+
+## Points Clés à Souligner
+
+- **Tests E2E**: Validation du comportement utilisateur réel avec Playwright
+- **Sécurité**: Identification proactive des vulnérabilités avec Trivy
+- **Qualité**: Mesure et amélioration continue avec SonarQube
+- **Automatisation**: Pipeline complet pour garantir la qualité à chaque modification

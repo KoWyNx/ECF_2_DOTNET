@@ -1,0 +1,44 @@
+=== RÉSUMÉ DE L'ANALYSE TRIVY DE L'IMAGE DOCKER ===
+Date: 07/05/2025 10:27:19
+Image analysée: ecf_2_dotnet-app:latest
+
+STATISTIQUES DES VULNÉRABILITÉS:
+
+VULNÉRABILITÉS CRITIQUES ET ÉLEVÉES:
+Pour les détails des vulnérabilités critiques et élevées, veuillez consulter:
+- rapports/trivy-image-summary.txt (format texte)
+- rapports/trivy-image-report.html (format HTML)
+
+RECOMMANDATIONS:
+1. Mettre à jour les packages système avec des vulnérabilités CRITICAL en priorité
+2. Planifier la mise à jour des packages avec des vulnérabilités HIGH
+3. Utiliser une image de base plus récente si possible
+
+Pour plus de détails, voir les rapports complets:
+- rapports/trivy-image-summary.txt (format texte)
+- rapports/trivy-image-report.html (format HTML)
+- rapports/trivy-image.json (format JSON)
+
+APERÇU DU RAPPORT:
+-------------------
+
+Report Summary
+
+┌──────────────────────────────────────────────────────────────────────────────────┬─────────────┬─────────────────┬─────────┐
+│                                      Target                                      │    Type     │ Vulnerabilities │ Secrets │
+├──────────────────────────────────────────────────────────────────────────────────┼─────────────┼─────────────────┼─────────┤
+│ ecf_2_dotnet-app:latest (debian 12.10)                                           │   debian    │       77        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼─────────────┼─────────────────┼─────────┤
+│ app/EcfDotnet.deps.json                                                          │ dotnet-core │        6        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼─────────────┼─────────────────┼─────────┤
+│ usr/share/dotnet/shared/Microsoft.AspNetCore.App/8.0.15/Microsoft.AspNetCore.Ap- │ dotnet-core │        0        │    -    │
+│ p.deps.json                                                                      │             │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼─────────────┼─────────────────┼─────────┤
+│ usr/share/dotnet/shared/Microsoft.NETCore.App/8.0.15/Microsoft.NETCore.App.deps- │ dotnet-core │        0        │    -    │
+│ .json                                                                            │             │                 │         │
+└──────────────────────────────────────────────────────────────────────────────────┴─────────────┴─────────────────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+...

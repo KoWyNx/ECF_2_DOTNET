@@ -1,7 +1,7 @@
 {
   "SchemaVersion": 2,
-  "CreatedAt": "2025-05-06T20:32:29.11825196Z",
-  "ArtifactName": "ecf-dotnet-app:latest",
+  "CreatedAt": "2025-05-07T08:27:05.680852209Z",
+  "ArtifactName": "ecf_2_dotnet-app:latest",
   "ArtifactType": "container_image",
   "Metadata": {
     "Size": 311537152,
@@ -9,7 +9,7 @@
       "Family": "debian",
       "Name": "12.10"
     },
-    "ImageID": "sha256:575e1dc855ef158b29fa60b659a55f82de1fc20b1e8689a5a13e373427f03898",
+    "ImageID": "sha256:ae07b025b97427515855af9c6400a5a493a3a3355c0a61fea33930d8399a58d4",
     "DiffIDs": [
       "sha256:66a307619b8c32f57cf19fc334bb43ba2d3cfdda26f19dfc6e87b49b73e41be9",
       "sha256:349f78db4a0ca9a714b1c1d5cc2956252d334411b23ff75e6d2784b8460dd0ce",
@@ -17,18 +17,18 @@
       "sha256:215f7945eaaa5d85f9eb66414e6ef1f468246b0301283fbb0e1814cc3befbe06",
       "sha256:d4c4184e4d41b625f5a242f0bd9e1faedd5fb64fbca6768bf755d055d25b2f9e",
       "sha256:b5d203689043c8d5193f9c7ad351e5268a0b7e821d8e7c998e4b9285762658ed",
-      "sha256:2bc6a3f7bbbca97f7bb9bbc8e832fb6edf223e4c6c27b48fee8aa51640e204fc",
-      "sha256:0b230af8aed6df089c0f1cd0c64bdb11284ff42735d670739898ecbad5aa3ad8"
+      "sha256:7b4c4aba7d6f84e10b428e1221127737945dd6c3b54b2d1408a6dc9f94a068dc",
+      "sha256:349013619af51e2d932dfdf0a53c424deaaff2a8ef393df11d4f746558d7cdb1"
     ],
     "RepoTags": [
-      "ecf-dotnet-app:latest"
+      "ecf_2_dotnet-app:latest"
     ],
     "RepoDigests": [
-      "ecf-dotnet-app@sha256:575e1dc855ef158b29fa60b659a55f82de1fc20b1e8689a5a13e373427f03898"
+      "ecf_2_dotnet-app@sha256:ae07b025b97427515855af9c6400a5a493a3a3355c0a61fea33930d8399a58d4"
     ],
     "ImageConfig": {
       "architecture": "arm64",
-      "created": "2025-05-06T20:31:55.981250833Z",
+      "created": "2025-05-07T08:18:01.98366368Z",
       "history": [
         {
           "created": "2025-04-28T00:00:00Z",
@@ -79,23 +79,23 @@
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2025-05-06T19:31:35Z",
+          "created": "2025-05-06T20:58:01Z",
           "created_by": "WORKDIR /app",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2025-05-06T20:31:55Z",
+          "created": "2025-05-07T08:18:01Z",
           "created_by": "COPY /app/publish . # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2025-05-06T20:31:55Z",
+          "created": "2025-05-07T08:18:01Z",
           "created_by": "EXPOSE map[5000/tcp:{}]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2025-05-06T20:31:55Z",
+          "created": "2025-05-07T08:18:01Z",
           "created_by": "ENTRYPOINT [\"dotnet\" \"EcfDotnet.dll\"]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
@@ -111,8 +111,8 @@
           "sha256:215f7945eaaa5d85f9eb66414e6ef1f468246b0301283fbb0e1814cc3befbe06",
           "sha256:d4c4184e4d41b625f5a242f0bd9e1faedd5fb64fbca6768bf755d055d25b2f9e",
           "sha256:b5d203689043c8d5193f9c7ad351e5268a0b7e821d8e7c998e4b9285762658ed",
-          "sha256:2bc6a3f7bbbca97f7bb9bbc8e832fb6edf223e4c6c27b48fee8aa51640e204fc",
-          "sha256:0b230af8aed6df089c0f1cd0c64bdb11284ff42735d670739898ecbad5aa3ad8"
+          "sha256:7b4c4aba7d6f84e10b428e1221127737945dd6c3b54b2d1408a6dc9f94a068dc",
+          "sha256:349013619af51e2d932dfdf0a53c424deaaff2a8ef393df11d4f746558d7cdb1"
         ]
       },
       "config": {
@@ -128,6 +128,11 @@
           "DOTNET_VERSION=8.0.15",
           "ASPNET_VERSION=8.0.15"
         ],
+        "Labels": {
+          "com.docker.compose.project": "ecf_2_dotnet",
+          "com.docker.compose.service": "app",
+          "com.docker.compose.version": "2.34.0"
+        },
         "WorkingDir": "/app",
         "ExposedPorts": {
           "5000": {}
@@ -167,19 +172,19 @@
       },
       {
         "Size": 1536,
-        "Digest": "sha256:274d70636f2c906274928fd34132293388f4ec236cdf413ceb3a234468481b51",
-        "DiffID": "sha256:2bc6a3f7bbbca97f7bb9bbc8e832fb6edf223e4c6c27b48fee8aa51640e204fc"
+        "Digest": "sha256:ffc69b9c386122883b9c3aab018b5847b9cd267b3df3d5494cfe16161480e941",
+        "DiffID": "sha256:7b4c4aba7d6f84e10b428e1221127737945dd6c3b54b2d1408a6dc9f94a068dc"
       },
       {
         "Size": 58916864,
-        "Digest": "sha256:efc8b61b6f30e82e27bb9af65d346eb69dc51cb91e894e7f926fbf22f0df568a",
-        "DiffID": "sha256:0b230af8aed6df089c0f1cd0c64bdb11284ff42735d670739898ecbad5aa3ad8"
+        "Digest": "sha256:06034aeb3808e85824a207791b3ad36377402fa977a8731f44f0320b61231567",
+        "DiffID": "sha256:349013619af51e2d932dfdf0a53c424deaaff2a8ef393df11d4f746558d7cdb1"
       }
     ]
   },
   "Results": [
     {
-      "Target": "ecf-dotnet-app:latest (debian 12.10)",
+      "Target": "ecf_2_dotnet-app:latest (debian 12.10)",
       "Class": "os-pkgs",
       "Type": "debian",
       "Vulnerabilities": [
@@ -4532,14 +4537,14 @@
           "PkgName": "Azure.Identity",
           "PkgIdentifier": {
             "PURL": "pkg:nuget/Azure.Identity@1.7.0",
-            "UID": "ad50bde9ac3701e6"
+            "UID": "d4bded6a5948ef6d"
           },
           "InstalledVersion": "1.7.0",
           "FixedVersion": "1.10.2",
           "Status": "fixed",
           "Layer": {
-            "Digest": "sha256:efc8b61b6f30e82e27bb9af65d346eb69dc51cb91e894e7f926fbf22f0df568a",
-            "DiffID": "sha256:0b230af8aed6df089c0f1cd0c64bdb11284ff42735d670739898ecbad5aa3ad8"
+            "Digest": "sha256:06034aeb3808e85824a207791b3ad36377402fa977a8731f44f0320b61231567",
+            "DiffID": "sha256:349013619af51e2d932dfdf0a53c424deaaff2a8ef393df11d4f746558d7cdb1"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-36414",
@@ -4578,14 +4583,14 @@
           "PkgName": "Azure.Identity",
           "PkgIdentifier": {
             "PURL": "pkg:nuget/Azure.Identity@1.7.0",
-            "UID": "ad50bde9ac3701e6"
+            "UID": "d4bded6a5948ef6d"
           },
           "InstalledVersion": "1.7.0",
           "FixedVersion": "1.11.0",
           "Status": "fixed",
           "Layer": {
-            "Digest": "sha256:efc8b61b6f30e82e27bb9af65d346eb69dc51cb91e894e7f926fbf22f0df568a",
-            "DiffID": "sha256:0b230af8aed6df089c0f1cd0c64bdb11284ff42735d670739898ecbad5aa3ad8"
+            "Digest": "sha256:06034aeb3808e85824a207791b3ad36377402fa977a8731f44f0320b61231567",
+            "DiffID": "sha256:349013619af51e2d932dfdf0a53c424deaaff2a8ef393df11d4f746558d7cdb1"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-29992",
@@ -4624,14 +4629,14 @@
           "PkgName": "Azure.Identity",
           "PkgIdentifier": {
             "PURL": "pkg:nuget/Azure.Identity@1.7.0",
-            "UID": "ad50bde9ac3701e6"
+            "UID": "d4bded6a5948ef6d"
           },
           "InstalledVersion": "1.7.0",
           "FixedVersion": "1.11.4",
           "Status": "fixed",
           "Layer": {
-            "Digest": "sha256:efc8b61b6f30e82e27bb9af65d346eb69dc51cb91e894e7f926fbf22f0df568a",
-            "DiffID": "sha256:0b230af8aed6df089c0f1cd0c64bdb11284ff42735d670739898ecbad5aa3ad8"
+            "Digest": "sha256:06034aeb3808e85824a207791b3ad36377402fa977a8731f44f0320b61231567",
+            "DiffID": "sha256:349013619af51e2d932dfdf0a53c424deaaff2a8ef393df11d4f746558d7cdb1"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-35255",
@@ -4685,14 +4690,14 @@
           "PkgName": "Microsoft.Data.SqlClient",
           "PkgIdentifier": {
             "PURL": "pkg:nuget/Microsoft.Data.SqlClient@5.1.1",
-            "UID": "88f4c46daaa08d10"
+            "UID": "f3d36a9961da0d35"
           },
           "InstalledVersion": "5.1.1",
           "FixedVersion": "2.1.7, 3.1.5, 4.0.5, 5.1.3",
           "Status": "fixed",
           "Layer": {
-            "Digest": "sha256:efc8b61b6f30e82e27bb9af65d346eb69dc51cb91e894e7f926fbf22f0df568a",
-            "DiffID": "sha256:0b230af8aed6df089c0f1cd0c64bdb11284ff42735d670739898ecbad5aa3ad8"
+            "Digest": "sha256:06034aeb3808e85824a207791b3ad36377402fa977a8731f44f0320b61231567",
+            "DiffID": "sha256:349013619af51e2d932dfdf0a53c424deaaff2a8ef393df11d4f746558d7cdb1"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-0056",
@@ -4762,14 +4767,14 @@
           "PkgName": "Microsoft.IdentityModel.JsonWebTokens",
           "PkgIdentifier": {
             "PURL": "pkg:nuget/Microsoft.IdentityModel.JsonWebTokens@6.24.0",
-            "UID": "39c8c1237847742d"
+            "UID": "f4a2cd64338d2e42"
           },
           "InstalledVersion": "6.24.0",
           "FixedVersion": "5.7.0, 6.34.0, 7.1.2",
           "Status": "fixed",
           "Layer": {
-            "Digest": "sha256:efc8b61b6f30e82e27bb9af65d346eb69dc51cb91e894e7f926fbf22f0df568a",
-            "DiffID": "sha256:0b230af8aed6df089c0f1cd0c64bdb11284ff42735d670739898ecbad5aa3ad8"
+            "Digest": "sha256:06034aeb3808e85824a207791b3ad36377402fa977a8731f44f0320b61231567",
+            "DiffID": "sha256:349013619af51e2d932dfdf0a53c424deaaff2a8ef393df11d4f746558d7cdb1"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-21319",
@@ -4845,14 +4850,14 @@
           "PkgName": "System.IdentityModel.Tokens.Jwt",
           "PkgIdentifier": {
             "PURL": "pkg:nuget/System.IdentityModel.Tokens.Jwt@6.24.0",
-            "UID": "14684ab9131bd569"
+            "UID": "2ad7720fd6ad99c2"
           },
           "InstalledVersion": "6.24.0",
           "FixedVersion": "5.7.0, 6.34.0, 7.1.2",
           "Status": "fixed",
           "Layer": {
-            "Digest": "sha256:efc8b61b6f30e82e27bb9af65d346eb69dc51cb91e894e7f926fbf22f0df568a",
-            "DiffID": "sha256:0b230af8aed6df089c0f1cd0c64bdb11284ff42735d670739898ecbad5aa3ad8"
+            "Digest": "sha256:06034aeb3808e85824a207791b3ad36377402fa977a8731f44f0320b61231567",
+            "DiffID": "sha256:349013619af51e2d932dfdf0a53c424deaaff2a8ef393df11d4f746558d7cdb1"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-21319",

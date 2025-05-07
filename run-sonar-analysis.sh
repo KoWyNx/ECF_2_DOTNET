@@ -4,7 +4,7 @@ VERT='\033[0;32m'
 ROUGE='\033[0;31m'
 JAUNE='\033[0;33m'
 BLEU='\033[0;34m'
-NC='\033[0m' 
+NC='\033[0m'
 
 echo -e "${BLEU}=== Démarrage de l'analyse SonarQube ===${NC}"
 
@@ -12,12 +12,13 @@ echo -e "${BLEU}=== Démarrage de l'analyse SonarQube ===${NC}"
 mkdir -p rapports
 
 # Vérifier si dotnet-sonarscanner est installé
+echo -e "\n${JAUNE}Vérification de dotnet-sonarscanner...${NC}"
 if ! dotnet tool list -g | grep -q "dotnet-sonarscanner"; then
     echo -e "${JAUNE}Installation de dotnet-sonarscanner...${NC}"
     dotnet tool install --global dotnet-sonarscanner
     
     if [ $? -ne 0 ]; then
-        echo -e "${ROUGE}Échec de l'installation de dotnet-sonarscanner${NC}"
+        echo -e "${ROUGE}Échec de l'installation de dotnet-sonarscanner. Veuillez l'installer manuellement.${NC}"
         exit 1
     fi
 fi
@@ -25,7 +26,7 @@ fi
 # Vérifier si le token SonarQube est défini
 if [ -z "$SONAR_TOKEN" ]; then
     echo -e "${JAUNE}Variable d'environnement SONAR_TOKEN non définie.${NC}"
-    echo -e "${JAUNE}Utilisation d'une configuration locale pour l'analyse.${NC}"
+    echo -e "${JAUNE}Utilisation de l'authentification anonyme (pour les instances locales uniquement).${NC}"
     
     # Définir l'URL de SonarQube (par défaut: localhost)
     SONAR_HOST_URL=${SONAR_HOST_URL:-"http://localhost:9000"}
@@ -35,6 +36,10 @@ else
     echo -e "${VERT}Configuration SonarQube trouvée.${NC}"
     echo -e "${JAUNE}URL SonarQube: ${SONAR_HOST_URL}${NC}"
 fi
+
+# Nettoyer les analyses précédentes
+echo -e "\n${JAUNE}Nettoyage des analyses précédentes...${NC}"
+rm -rf .sonarqube
 
 # Exécuter les tests avec couverture de code
 echo -e "\n${JAUNE}Exécution des tests avec couverture de code...${NC}"
@@ -48,6 +53,7 @@ fi
 # Démarrer l'analyse SonarQube
 echo -e "\n${JAUNE}Démarrage de l'analyse SonarQube...${NC}"
 
+# Étape Begin
 if [ -n "$SONAR_TOKEN" ]; then
     # Avec authentification
     dotnet sonarscanner begin \
@@ -70,21 +76,20 @@ else
 fi
 
 # Compiler le projet
-echo -e "\n${JAUNE}Compilation du projet pour l'analyse...${NC}"
+echo -e "\n${JAUNE}Compilation du projet...${NC}"
 dotnet build EcfDotnet.csproj --no-incremental
 
-# Terminer l'analyse SonarQube
+# Étape End
 echo -e "\n${JAUNE}Finalisation de l'analyse SonarQube...${NC}"
-
 if [ -n "$SONAR_TOKEN" ]; then
     dotnet sonarscanner end /d:sonar.login="${SONAR_TOKEN}"
 else
     dotnet sonarscanner end
 fi
 
+# Vérifier si l'analyse a réussi
 if [ $? -eq 0 ]; then
     echo -e "${VERT}✓ Analyse SonarQube terminée avec succès${NC}"
-    echo -e "${JAUNE}Consultez les résultats sur: ${SONAR_HOST_URL}/dashboard?id=ECF_2_DOTNET${NC}"
     
     # Créer un fichier de rapport simple pour référence
     cat > rapports/sonar-analysis-info.txt << EOL
