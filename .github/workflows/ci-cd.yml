@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-and-test:
-    name: Compilation et Tests
+    name: Compilation
     runs-on: ubuntu-latest
     
     steps:
@@ -76,81 +76,51 @@ jobs:
           trivy config --format json --output rapports/trivy-dockerfile.json .
           trivy config --severity CRITICAL,HIGH --format table .
   
-  sonarqube-analysis:
-    name:  Analyse de qualité du code
-    runs-on: ubuntu-latest
-    needs: build-and-test
-    
-    steps:
-      - name:  Récupération du code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      
-      - name:  Configuration .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.0.x'
-      
-      - name:  Installation de SonarScanner
-        run: dotnet tool install --global dotnet-sonarscanner
-      
-      - name:  Démarrage de l'analyse SonarQube
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: |
-          # Vérification que l'URL SonarQube est définie
-          if [ -z "$SONAR_HOST_URL" ]; then
-            echo "SONAR_HOST_URL n'est pas défini. Analyse SonarQube ignorée."
-            exit 0
-          fi
-          
-          # Vérification de la disponibilité du serveur SonarQube
-          if ! curl -s -f -o /dev/null "$SONAR_HOST_URL"; then
-            echo "Impossible de se connecter à $SONAR_HOST_URL. Analyse SonarQube ignorée."
-            exit 0
-          fi
-          
-          dotnet sonarscanner begin \
-            /k:"ECF_2_DOTNET" \
-            /n:"ECF_2_DOTNET" \
-            /d:sonar.host.url="${SONAR_HOST_URL}" \
-            /d:sonar.login="${SONAR_TOKEN}" \
-            /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" \
-            /d:sonar.coverage.exclusions="**Test*.cs" \
-            /d:sonar.sourceEncoding="UTF-8"
-      
-      - name:  Compilation du projet pour SonarQube
-        run: dotnet build EcfDotnet.csproj --no-incremental
-      
-      - name:  Finalisation de l'analyse SonarQube
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: |
-          # Vérification que l'URL SonarQube est définie
-          if [ -z "$SONAR_HOST_URL" ]; then
-            echo "SONAR_HOST_URL n'est pas défini. Finalisation de l'analyse SonarQube ignorée."
-            exit 0
-          fi
-          
-          # Vérification de la disponibilité du serveur SonarQube
-          if ! curl -s -f -o /dev/null "$SONAR_HOST_URL"; then
-            echo "Impossible de se connecter à $SONAR_HOST_URL. Finalisation de l'analyse SonarQube ignorée."
-            exit 0
-          fi
-          
-          dotnet sonarscanner end /d:sonar.login="${SONAR_TOKEN}"
-      
-      - name:  Création du rapport d'information
-        run: |
-          mkdir -p rapports
-          echo "Analyse SonarQube" > rapports/sonar-analysis-info.txt
-          echo "=================" >> rapports/sonar-analysis-info.txt
-          echo "Date: $(date '+%d/%m/%Y %H:%M:%S')" >> rapports/sonar-analysis-info.txt
-          echo "Projet: ECF_2_DOTNET" >> rapports/sonar-analysis-info.txt
-  
+sonarqube-analysis:
+  name: Analyse de qualité du code
+  runs-on: ubuntu-latest
+  needs: build-and-test
+
+  env:
+    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+  steps:
+    - name: Récupération du code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Configuration .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Installation de SonarScanner
+      run: dotnet tool install --global dotnet-sonarscanner
+
+    - name: Analyse SonarQube
+      run: |
+        dotnet sonarscanner begin \
+          /k:"ECF_2_DOTNET" \
+          /n:"ECF_2_DOTNET" \
+          /d:sonar.host.url="${SONAR_HOST_URL}" \
+          /d:sonar.login="${SONAR_TOKEN}" \
+          /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" \
+          /d:sonar.coverage.exclusions="**Test*.cs" \
+          /d:sonar.sourceEncoding="UTF-8"
+
+        dotnet build EcfDotnet.csproj --no-incremental
+
+        dotnet sonarscanner end /d:sonar.login="${SONAR_TOKEN}"
+
+    - name: Création du rapport Sonar
+      run: |
+        mkdir -p rapports
+        echo "Analyse SonarQube" > rapports/sonar-analysis-info.txt
+        echo "Date: $(date '+%d/%m/%Y %H:%M:%S')" >> rapports/sonar-analysis-info.txt
+        echo "Projet: ECF_2_DOTNET" >> rapports/sonar-analysis-info.txt
+
   e2e-tests:
     name:  Tests End-to-End
     runs-on: ubuntu-latest

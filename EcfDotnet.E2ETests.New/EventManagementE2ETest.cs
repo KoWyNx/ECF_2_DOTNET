@@ -11,10 +11,8 @@ namespace EcfDotnet.E2ETests.New
         [TestMethod]
         public async Task CreerEvenementEtVerifier()
         {
-            // Créer une instance de Playwright
             using var playwright = await Playwright.CreateAsync();
             
-            // Lancer un navigateur
             await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
                 Headless = true,
@@ -28,13 +26,9 @@ namespace EcfDotnet.E2ETests.New
             {
                 // Étape 1: Naviguer directement vers la page de liste des événements
                 await page.GotoAsync("http://localhost:5001/Evenement/Index");
-                await page.ScreenshotAsync(new PageScreenshotOptions 
-                { 
-                    Path = "01-page-liste-evenements.png",
-                    FullPage = true 
-                });
+           
                 
-                Console.WriteLine("Page de liste des événements chargée, capture d'écran prise");
+                Console.WriteLine("Page de liste des événements chargée");
                 
                 // Étape 2: Cliquer sur le bouton "Créer un nouvel événement"
                 await page.ClickAsync("text=Créer un nouvel événement");
@@ -42,13 +36,9 @@ namespace EcfDotnet.E2ETests.New
                 // Attendre que la page de création soit chargée
                 await page.WaitForSelectorAsync("form[action='/Evenement/Create']", new PageWaitForSelectorOptions { Timeout = 30000 });
                 
-                await page.ScreenshotAsync(new PageScreenshotOptions 
-                { 
-                    Path = "02-page-creation-evenement.png",
-                    FullPage = true 
-                });
+               
                 
-                Console.WriteLine("Page de création d'événement chargée, capture d'écran prise");
+                Console.WriteLine("Page de création d'événement chargée");
                 
                 // Étape 3: Remplir le formulaire de création d'événement
                 var eventName = "Conférence Test " + DateTime.Now.ToString("yyyyMMdd-HHmmss");
@@ -63,11 +53,7 @@ namespace EcfDotnet.E2ETests.New
                 await page.FillAsync("input[name='DateFin']", dayAfterTomorrow.ToString("yyyy-MM-dd"));
                 await page.FillAsync("input[name='Localisation']", "Paris, France");
                 
-                await page.ScreenshotAsync(new PageScreenshotOptions 
-                { 
-                    Path = "03-formulaire-evenement-rempli.png",
-                    FullPage = true 
-                });
+               
                 
                 Console.WriteLine("Formulaire rempli, capture d'écran prise");
                 
@@ -87,11 +73,7 @@ namespace EcfDotnet.E2ETests.New
                 var currentUrl = page.Url;
                 Console.WriteLine($"URL après soumission : {currentUrl}");
                 
-                await page.ScreenshotAsync(new PageScreenshotOptions 
-                { 
-                    Path = "04-apres-soumission.png",
-                    FullPage = true 
-                });
+               
                 
                 // Si nous sommes redirigés vers la page d'index ou la page Evenement (qui est aussi la liste)
                 if (currentUrl.Contains("/Evenement/Index") || currentUrl.EndsWith("/Evenement"))
