@@ -41,9 +41,12 @@ jobs:
         uses: actions/checkout@v3
       
       - name:  Installation de Trivy
-        uses: aquasecurity/trivy-action@master
-        with:
-          install: true
+        run: |
+          sudo apt-get install wget apt-transport-https gnupg lsb-release -y
+          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+          echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update
+          sudo apt-get install trivy -y
       
       - name:  Analyse des dépendances avec Trivy
         run: |
@@ -60,13 +63,19 @@ jobs:
       - name:  Récupération du code
         uses: actions/checkout@v3
       
+      - name:  Installation de Trivy
+        run: |
+          sudo apt-get install wget apt-transport-https gnupg lsb-release -y
+          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+          echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update
+          sudo apt-get install trivy -y
+      
       - name:  Analyse Docker avec Trivy
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: 'config'
-          format: 'json'
-          output: 'trivy-dockerfile.json'
-          severity: 'CRITICAL,HIGH'
+        run: |
+          mkdir -p rapports
+          trivy config --format json --output rapports/trivy-dockerfile.json .
+          trivy config --severity CRITICAL,HIGH --format table .
   
   sonarqube-analysis:
     name:  Analyse de qualité du code
