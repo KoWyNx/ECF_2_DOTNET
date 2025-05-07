@@ -1,27 +1,27 @@
 # Guide de Présentation - Tests E2E et CI/CD
 
-## Plan de Présentation (5 minutes)
+## Plan de Présentation 
 
-### 1. Contexte du Projet (30 secondes)
+### 1. Contexte du Projet 
 - Application web ASP.NET Core de gestion d'événements
 - Architecture : Application + SQL Server + SonarQube + Trivy
 
-### 2. Scénarios Testés en E2E (1 minute)
+### 2. Scénarios Testés en E2E 
 - Tests avec Playwright pour valider le comportement utilisateur
 - Démonstration du test de création d'événement
 - Explication de l'approche de test de bout en bout
 
-### 3. Analyse de Sécurité avec Trivy (1 minute)
+### 3. Analyse de Sécurité avec Trivy 
 - Résultats de l'analyse des dépendances et de l'image Docker
 - Points critiques identifiés et leur impact
 - Stratégies de correction des vulnérabilités
 
-### 4. Rapport SonarQube (1 minute)
+### 4. Rapport SonarQube 
 - Dette technique identifiée
 - Bugs et code smells détectés
 - Qualité du code et couverture des tests
 
-### 5. Pipeline CI/CD (1 minute 30)
+### 5. Pipeline CI/CD 
 - Choix de GitHub Actions (vs GitLab CI)
 - Étapes clés du workflow
 - Intégration des outils d'analyse et de test
