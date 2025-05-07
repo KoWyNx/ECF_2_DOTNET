@@ -15,7 +15,7 @@ jobs:
       - name:  Récupération du code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Nécessaire pour SonarQube
+          fetch-depth: 0 
       
       - name:  Configuration .NET
         uses: actions/setup-dotnet@v3
@@ -41,12 +41,9 @@ jobs:
         uses: actions/checkout@v3
       
       - name:  Installation de Trivy
-        run: |
-          sudo apt-get install wget apt-transport-https gnupg lsb-release -y
-          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
-          echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
-          sudo apt-get update
-          sudo apt-get install trivy -y
+        uses: aquasecurity/trivy-action@master
+        with:
+          install: true
       
       - name:  Analyse des dépendances avec Trivy
         run: |

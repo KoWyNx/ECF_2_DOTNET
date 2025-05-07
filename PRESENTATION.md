@@ -36,10 +36,12 @@ docker-compose up -d
 cd EcfDotnet.E2ETests.New && dotnet test
 
 # Analyse de sécurité avec Trivy (dépendances)
-./run-trivy-deps-scan.sh
+trivy fs --format json --output rapports/trivy-deps.json .
+trivy fs --format table .
 
 # Analyse de sécurité avec Trivy (image Docker)
-./run-trivy-image-scan.sh
+trivy image ecf_2_dotnet-app:latest --format json --output rapports/trivy-image.json
+trivy image ecf_2_dotnet-app:latest --format table
 
 # Analyse de qualité avec SonarQube
 export SONAR_TOKEN=squ_12746e19fbeaa144c66692b406fdd5075b7c5b30
